@@ -1,5 +1,8 @@
 body {
-  margin: 100;
-  background: pink;
+  marginleft: 10%;
+  margin-right: 20%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  background-color: Azure;
   text-align: center
 }
