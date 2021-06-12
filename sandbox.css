@@ -26,6 +26,7 @@ body{
 .navButton:focus {
   outline-color: #ddd;
   outline-style: dotted;
+  outline-width: 1px;
 }
 
 .navButton:active {
