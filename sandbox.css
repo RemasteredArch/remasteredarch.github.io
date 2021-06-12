@@ -30,10 +30,10 @@ body{
 }
 
 .navButton:active {
-  outline-width: 1px
   border: none;
   outline: none;
   color: #21252B;
+  background-color: #5B6577;
 }
 
 .navButton:hover {
