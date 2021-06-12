@@ -21,11 +21,14 @@ body{
   border-radius:10px;
 }
 
-input:focus {
-  outline: dashed !important;
-  border-color: #719ECE;
-  box-shadow: 0 0 10px #719ECE;
+.navButton:focus {
+  outline-color: #ddd;
+  outline-style: dotted;
+  border-radius: 10px;
+}
 
+.navButton:hover {
+  background-color: #5B6577;
 }
 
 .navButton{
