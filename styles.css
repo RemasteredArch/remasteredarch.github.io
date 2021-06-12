@@ -1,0 +1,26 @@
+/* body: styles default content */
+
+body {
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 1%;
+  margin-bottom: 10%;
+  min-width: 200px;
+  background-color: White;
+  text-align: center;
+  font-family: helvetica;
+}
+
+/* noslect: makes buttons unselectable */
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+/* */
