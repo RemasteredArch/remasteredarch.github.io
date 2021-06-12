@@ -21,10 +21,17 @@ body{
   border-radius:10px;
 }
 
+/* navigation */
+
 .navButton:focus {
   outline-color: #ddd;
   outline-style: dotted;
-  border-radius: 10px;
+}
+
+.navButton:active {
+  border: none;
+  outline: none;
+  color: #21252B;
 }
 
 .navButton:hover {
