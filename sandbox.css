@@ -29,6 +29,8 @@ body{
   outline-width: 1px;
 }
 
+/* Make ctrl+click and/or middle mouse open in new tab! */
+
 .navButton:active {
   border: none;
   outline: none;
