@@ -19,8 +19,30 @@
         border: solid thin #A3A3A3;
         border-radius: .3em;
       }
+      #changelog{
+        display: none;
+        border: solid thin #A3A3A3;
+        border-radius: .3em;
+      }
       button{
         display: block;
+      }
+      table{
+        padding: .1em;
+        width: 98%;
+        margin-top: 10px !important;
+        margin: auto;
+      }
+      td{
+        border: solid thin #A3A3A3;
+        border-radius: .3em;
+        padding: .2em;
+        width: 30%;
+      }
+      th{
+        border: solid thin #5A5A5A;
+        border-radius: .3em;
+        padding: .2em;
       }
     </style>
   </head>
@@ -148,6 +170,31 @@
   <h3><a href="https://drive.google.com/file/d/1HLkygwn-9jJH1jOCifQjP9qW112nUVTS/view?usp=sharing">Download Here</a></h3>
   <br>
 
+<!-- Changelog -->
+
+  <hr>
+  <br>
+  <button onclick="changelogHide()">Changelog</button>
+  <div id="changelog">
+    <table>
+      <tr>
+        <th>Official List</th>
+        <th>Arch's Recommended</th>
+        <th>Resource Packs</th>
+      </tr>
+      <tr>
+        <td>
+            <p><b>9/14/21</b></p>
+              <p>&nbsp;&nbsp;&nbsp;<b>+</b> Curios API</p>
+              <p>&nbsp;&nbsp;&nbsp;<b>+</b> Cosmetic Armor</p>
+              <p>&nbsp;&nbsp;&nbsp;<b>+</b> Transparent Cosmetics</p>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
   <script>
     function table1Hide() {
       var x = document.getElementById("table1");
@@ -161,6 +208,16 @@
   <script>
     function table2Hide() {
       var x = document.getElementById("table2");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
+  <script>
+    function changelogHide() {
+      var x = document.getElementById("changelog");
       if (x.style.display === "block") {
         x.style.display = "none";
       } else {
