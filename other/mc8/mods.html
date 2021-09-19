@@ -27,6 +27,9 @@
       button{
         display: block;
       }
+      button:hover{
+        cursor: pointer;
+      }
       table{
         padding: .1em;
         width: 98%;
@@ -38,6 +41,7 @@
         border-radius: .3em;
         padding: .2em;
         width: 30%;
+        vertical-align: top;
       }
       th{
         border: solid thin #5A5A5A;
@@ -48,15 +52,16 @@
   </head>
     <body>
 
-  <!-- General Info -->
+<!-- General Info -->
 
   <h1>General Info</h1>
   <hr>
   <p><b>Version:</b> Fabric 1.16.5</p>
   <p><b>IP:</b> 185.249.218.52:25740</p>
+  <p><b>New Mods:</b> New mods will be announced in #announcements, and will be documented in the changelog at the bottom of this page.</p>
   <br>
 
-  <!-- Mods -->
+  <!-- Bare Minimum -->
 
   <h1>Mods</h1>
   <p><a href="https://fabricmc.net/wiki/player:tutorials:install_mcl:windows">Install Guide</a></p>
@@ -89,8 +94,6 @@
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/couplings">Couplings</a></li>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/eldritch-mobs">Eldritch Mobs</a></li>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/etched">Etched</a></li>
-      <li><a href="https://www.curseforge.com/minecraft/mc-mods/extra-origins">Extra Origins</a></li>
-        <ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/pehkui">Pehkui</a></li></ul>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api">Fabric API</a></li>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/figura">Figura</a> - <em>Client-Side mod, but necessary to see others' Figura avatars.</em></li>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/gate-of-babylon">Gate of Babylon</a></li>
@@ -99,11 +102,15 @@
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/icarus-fabric">Icarus</a></li>
         <ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/trinkets-fabric">Trinkets</a></li></ul>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/impersonate">Impersonate</a></li>
+      <li><a href="https://www.curseforge.com/minecraft/mc-mods/invisiblights">Invisiblights</a></li>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/mermod-fabric">Mermod</a></li>
         <ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/trinkets-fabric">Trinkets</a></li></ul>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/origins">Origins</a></li>
-      <li><a href="https://www.curseforge.com/minecraft/mc-mods/origins-classes">Origins Classes</a></li>
-      <li><a href="https://www.curseforge.com/minecraft/mc-mods/origins-umbrellas">Origins Umbrellas</a></li>
+        <ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/extra-origins">Extra Origins</a></li></ul>
+          <ul><ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/pehkui">Pehkui</a></li></ul></ul>
+        <ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/mob-origins">Mob Origins</li></ul>
+        <ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/origins-classes">Origins Classes</a></li></ul>
+        <ul><li><a href="https://www.curseforge.com/minecraft/mc-mods/origins-umbrellas">Origins Umbrellas</a></li></ul>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/size-shifting-potions">Size Shifting Potions</a></li>
         <ul><li><a href=" https://www.curseforge.com/minecraft/mc-mods/patchouli-fabric">Patchouli</a></li></ul>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/straw-dummy">Straw Dummy</a></li>
@@ -114,6 +121,8 @@
   <h3><a href="https://drive.google.com/file/d/118FpdHkh8nkNyiehvB7cRPtpHIaw7Zri/view?usp=sharing">Download Here<a></h3>
   <br>
 
+<!-- Arch's Recommended -->
+
   <h2>Arch's Recommended</h2>
   <p>This list includs the official mods list along with some quality client-side mods. Recommended if you want a quality experience out of the box.</p>
   <button onclick="table2Hide()">Mods List</button>
@@ -121,8 +130,6 @@
     <p style="text-indent:.6em">Additional mods include: <em>Note: download includes the bare minimum mods</em></p>
     <ul>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/dynamic-fps">Dynamic FPS</a></li>
-      <li><a href="https://www.curseforge.com/minecraft/mc-mods/enhanced-block-entities">Enhanced Block Entities</a> - <em>I haven't thoroughly tested this one yet, but it seems promising</em></li>
-        <ul><li><a href="https://github.com/comp500/Indium">Indium</a></li></ul>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/voxelmap">VoxelMap</a></li>
       <li><a href="https://www.curseforge.com/minecraft/mc-mods/gamma-utils">Gamma Utils</a></li>
       <li><a href="https://modrinth.com/mod/hydrogen">Hydrogen</a> - <em>I haven't thoroughly tested this one yet, but it seems promising</em></li>
@@ -152,7 +159,7 @@
 
   <br>
 
-  <!-- Resource packs -->
+<!-- Resource packs -->
 
   <h1>Resource Packs</h1>
   <p><a href="https://minecraft.fandom.com/wiki/Resource_Pack#Behavior">Install guide</a></p>
@@ -188,12 +195,22 @@
               <p>&nbsp;&nbsp;&nbsp;<b>+</b> Curios API</p>
               <p>&nbsp;&nbsp;&nbsp;<b>+</b> Cosmetic Armor</p>
               <p>&nbsp;&nbsp;&nbsp;<b>+</b> Transparent Cosmetics</p>
+            <p><b>9/18/21</b></p>
+              <p>&nbsp;&nbsp;&nbsp;<b>+</b> Mob Origins</p>
+              <p>&nbsp;&nbsp;&nbsp;<b>+</b> Invisiblights</p>
         </td>
-        <td></td>
+        <td>
+          <p><b>9/14/21</b></p>
+            <p>&nbsp;&nbsp;&nbsp;<b>-</b> Enhanced Block Entities</p>
+            <p>&nbsp;&nbsp;&nbsp;<b>-</b> Indium</p>
+        </td>
         <td></td>
       </tr>
     </table>
   </div>
+  <br>
+
+<!-- Scripts -->
 
   <script>
     function table1Hide() {
@@ -225,10 +242,5 @@
       }
     }
   </script>
-    <!-- Add changelog! From making of this website:
-      +Transparent cosmetics
-      +Cosmetic armor
-      +Curios API
-    -->
   </body>
 </html>
