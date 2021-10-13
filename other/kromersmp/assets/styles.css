@@ -4,44 +4,48 @@
   box-sizing: border-box;
 }
 
+html{
+  font-size: initial;
+}
+
 body{
-  margin: 12px
+  margin: 12px;
 }
 
 /* Trackerbar: Changes the appearance of the scrollbar on compatible browsers */
 
 /* width */
 ::-webkit-scrollbar {
-width: 12px;
+  width: 12px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-background: #FFF;
+  background: #FFF;
 }
 
 /* Track on hover */
 ::-webkit-scrollbar-track:hover {
-background: #D8D8D8;
+  background: #D8D8D8;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: #B2B2B2;
-border-radius: 5px;
-box-shadow: 10px;
+  background: #B2B2B2;
+  border-radius: 5px;
+  box-shadow: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: #555;
-box-shadow: 0px 0px 16px #000;
+  background: #555;
+  box-shadow: 0px 0px 16px #000;
 }
 
 /* Handle on press */
 ::-webkit-scrollbar-thumb:active {
-background: /*#555*/ #333;
-box-shadow: 0px 0px 12px #000;
+  background: #333;
+  box-shadow: 0px 0px 12px #000;
 }
 
 
@@ -61,6 +65,9 @@ box-shadow: 0px 0px 12px #000;
     @media screen and (max-width: 700px) {
       .grid{
         grid-template-columns: 1fr;
+      }
+      html{
+        font-size: 30px;
       }
     }
 
