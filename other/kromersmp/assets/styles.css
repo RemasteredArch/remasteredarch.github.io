@@ -68,10 +68,6 @@ body{
       html{
         font-size: 20px;
       }
-      button{
-        height: 50px;
-        width: 100px;
-      }
     }
 
 /* Table & changelog: Collapsible lists/tables */
@@ -97,6 +93,7 @@ body{
 .changeLog ul {
   padding-left: 1em;
 }
+
 /* button: changes the appearance of buttons */
 
 button{
