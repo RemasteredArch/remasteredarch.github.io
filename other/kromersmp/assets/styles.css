@@ -68,6 +68,10 @@ body{
       html{
         font-size: 20px;
       }
+      button{
+        height: 50px;
+        width: 100px;
+      }
     }
 
 /* Table & changelog: Collapsible lists/tables */
