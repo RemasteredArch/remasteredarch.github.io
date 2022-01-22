@@ -1,0 +1,259 @@
+
+/* ###################################################################### */
+/* Nord color Palette: https://www.nordtheme.com/docs/colors-and-palettes */
+/* ###################################################################### */
+/* :root {
+  --nord0:#2e3440;
+  --nord1:#3b4252;
+  --nord2:#434c5e;
+  --nord3:#4c566a;
+  --nord4:#d8dee9;
+  --nord5:#e5e9f0;
+  --nord6:#eceff4;
+  --nord7:#8fbcbb;
+  --nord8:#88c0d0;
+  --nord9:#81a1c1;
+  --nord10:#5e81ac;
+  --nord11:#bf616a;
+  --nord12:#d08770;
+  --nord13:#ebcb8b;
+  --nord14:#a3be8c;
+  --nord15:#b48ead
+} */
+
+
+/* ######### */
+/* Variables */
+/* ######### */
+
+:root {
+  --background-color: #eee;
+  --text-color: black;
+  --highlight-color: #00a936;
+  --transparent-gray: #b7b7b780;
+  --content-background-color: #fff;
+
+  /* https://utopia.fyi/type/calculator/ */
+  --font--2: clamp(0.96rem, 0.95rem + 0.01vw, 0.96rem);
+  --font--1: clamp(1.15rem, 1.12rem + 0.11vw, 1.20rem);
+  --font-0: clamp(1.38rem, 1.33rem + 0.24vw, 1.50rem);
+  --font-1: clamp(1.65rem, 1.56rem + 0.44vw, 1.88rem);
+  --font-2: clamp(1.98rem, 1.84rem + 0.71vw, 2.34rem);
+  --font-3: clamp(2.38rem, 2.16rem + 1.08vw, 2.93rem);
+  --font-4: clamp(2.85rem, 2.53rem + 1.58vw, 3.66rem);
+  --font-5: clamp(3.42rem, 2.97rem + 2.26vw, 4.58rem);
+
+  --tiltX: 0deg;
+  --tiltY: 0deg;
+
+  --body-font: 'Plex Regular', sans-serif;
+  --heading-font: 'Plex Regular', sans-serif;
+}
+
+[data-theme="dark" ] {
+  --background-color: #252525;
+  --text-color: white;
+  --highlight-color: #00cf42;
+  --transparent-gray: #80808080;
+  --content-background-color: #333;
+}
+
+
+/* #### */
+/* Font */
+/* #### */
+
+@font-face {
+  font-family: 'Plex Regular';
+  src: url('../IBM Plex/IBMPlexSans-Regular.ttf');
+  font-weight: normal;
+  font-style: normal
+}
+
+@font-face {
+  font-family: 'Plex Regular';
+  src: url('../IBM Plex/IBMPlexSans-Bold.ttf');
+  font-weight: bold;
+  font-style: normal
+}
+
+@font-face {
+  font-family: 'Plex Regular';
+  src: url('../IBM Plex/IBMPlexSans-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic
+}
+
+@font-face {
+  font-family: 'Plex Regular';
+  src: url('../IBM Plex/IBMPlexSans-Italic.ttf');
+  font-weight: normal;
+  font-style: italic
+}
+
+
+/* ######### */
+/* Universal */
+/* ######### */
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  font-size: var(--font-0);
+  font-family: var(--body-font);
+}
+
+/* ##### */
+/* Links */
+/* ##### */
+
+a {
+  text-decoration: none;
+  border-bottom: .1em dashed;
+  color: var(--highlight-color);
+  position: relative;
+}
+
+a:hover {
+  border-bottom-style: solid;
+}
+
+/* lonelyLink: standalone links. */
+.lonelyLink {
+  font-size: var(--font-1);
+  display: block;
+  width: fit-content;
+  margin: 1em auto;
+}
+
+
+/* ###### */
+/* Images */
+/* ###### */
+
+img {
+  display: block;
+  margin-inline: auto;
+  border-radius: .5rem;
+  width: 20rem;
+  height: 20rem;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+/* ##### */
+/* Lists */
+/* ##### */
+
+li {
+  margin-block: .25em;
+}
+
+
+/* ######### */
+/* No Select */
+/* ######### */
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+
+/* ####### */
+/* content */
+/* ####### */
+
+.content {
+  background-color: var(--content-background-color);
+  width: clamp(23rem, 50%, 50rem);
+  margin: .5rem auto 1rem auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  padding: 1em;
+  border-bottom: .2rem solid var(--highlight-color);
+}
+
+
+/* ############### */
+/* Portfolio Cards */
+/* ############### */
+
+.portfolioCardContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 1rem auto 1rem auto;
+  width: fit-content;
+}
+
+@media screen and (min-width: 900px) {
+  .portfolioCardContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.portfolioCard {
+  display: block;
+  min-height: 20rem;
+  height: fit-content;
+  max-height: 30rem;
+  width: 20rem;
+
+  padding: 1rem;
+  margin: .5rem;
+
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: var(--content-background-color);
+
+  transition: transform .1s linear;
+  transform-origin: center center;
+
+  color: var(--text-color);
+  border-bottom: .2rem dashed var(--highlight-color);
+}
+
+.portfolioCard:hover {
+  transform: rotateY(var(--tiltX))
+             rotateX(var(--tiltY));
+  border-bottom-style: solid;
+}
+
+.portfolioCard * {
+  pointer-events: none;
+}
+
+
+/* ############## */
+/* Theme Switcher */
+/* ############## */
+
+#themeSwitcherBox {
+  position: fixed;
+  right: .5rem;
+  top: .5rem;
+  z-index: 1;
+
+  width: 2rem;
+  height: 2rem;
+  padding: .2rem;
+  border-radius: .5rem;
+
+  background-color: var(--transparent-gray);
+  backdrop-filter: blur(.2rem);
+
+  cursor: pointer;
+}
+
+#themeSwitcherMoon, #themeSwitcherSun {
+  width: 100%;
+  height: 100%;
+  display: none;
+}

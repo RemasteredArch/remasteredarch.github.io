@@ -1,0 +1,128 @@
+/* Border-box: sets sizing (width, height) to indclude borders, padding, etc. */
+
+* {
+  box-sizing: border-box;
+}
+
+html{
+  font-size: initial;
+}
+
+body{
+  margin: 12px;
+}
+
+/* Trackerbar: Changes the appearance of the scrollbar on compatible browsers */
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #FFF;
+}
+
+/* Track on hover */
+::-webkit-scrollbar-track:hover {
+  background: #D8D8D8;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #B2B2B2;
+  border-radius: 5px;
+  box-shadow: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  box-shadow: 0px 0px 16px #000;
+}
+
+/* Handle on press */
+::-webkit-scrollbar-thumb:active {
+  background: #333;
+  box-shadow: 0px 0px 12px #000;
+}
+
+
+/* Grid display for mod packs & resource packs */
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+    .gridBox{
+      padding: 1em;
+      border: solid thin #000;
+      border-radius: 10px;
+      margin: 10px;
+    }
+    @media (orientation: portrait) {
+      .grid{
+        grid-template-columns: 1fr;
+      }
+      html{
+        font-size: 20px;
+      }
+    }
+
+/* Table & changelog: Collapsible lists/tables */
+
+#table1{
+  display: none;
+  border: solid thin #A3A3A3;
+  border-radius: .3em;
+}
+
+#table2{
+  display: none;
+  border: solid thin #A3A3A3;
+  border-radius: .3em;
+}
+
+#changelog{
+  display: none;
+  border: solid thin #A3A3A3;
+  border-radius: .3em;
+}
+
+.changeLog ul {
+  padding-left: 1em;
+}
+
+/* button: changes the appearance of buttons */
+
+button{
+  display: block;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+/* table: changes the appearance of tables */
+
+table{
+  padding: .1em;
+  width: 98%;
+  margin-top: 10px !important;
+  margin: auto;
+}
+
+td{
+  border: solid thin #A3A3A3;
+  border-radius: .3em;
+  padding: .2em;
+  width: 30%;
+  vertical-align: top;
+}
+
+th{
+  border: solid thin #5A5A5A;
+  border-radius: .3em;
+  padding: .2em;
+}
