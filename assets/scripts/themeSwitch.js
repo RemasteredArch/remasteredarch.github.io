@@ -34,5 +34,3 @@ function themeSwitch() {
     moonShow()
   }
 }
-
-// if (theme == "dark") { themeSwitch() } // TEMP: Light mode design first

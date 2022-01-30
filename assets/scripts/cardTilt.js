@@ -12,10 +12,6 @@ const root = document.querySelector(':root')
 
 var report = false // Set to true for reporting
 
-function card() {
-
-}
-
 function cursorReport(event) {
 
   card = event.srcElement
