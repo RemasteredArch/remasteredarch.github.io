@@ -18,10 +18,9 @@ function sunShow() {
 
 // Check if user prefers dark mode
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.documentElement.setAttribute('data-theme', 'dark')
-  theme = "dark"
-  sunShow()
+  themeSwitch()
 }
+
 // Swap between light and dark mode
 function themeSwitch() {
   if (theme == "light") {
