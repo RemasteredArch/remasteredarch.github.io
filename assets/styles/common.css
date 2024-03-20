@@ -233,3 +233,7 @@ li {
   height: 100%;
   display: none;
 }
+
+#themeSwitcherSun {
+  display: block;
+}
