@@ -26,7 +26,7 @@
   --heading-font: 'Plex Regular', sans-serif;
 }
 
-[data-theme="dark" ] {
+[data-theme="dark"] {
   --background-color: #252525;
   --text-color: white;
   --highlight-color: #00cf42;
@@ -133,12 +133,18 @@ li {
 /* ######### */
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
 
@@ -197,8 +203,7 @@ li {
 }
 
 .portfolioCard:hover {
-  transform: rotateY(var(--tiltX))
-             rotateX(var(--tiltY));
+  transform: rotateY(var(--tiltX)) rotateX(var(--tiltY));
   border-bottom-style: solid;
 }
 
@@ -228,12 +233,13 @@ li {
   cursor: pointer;
 }
 
-#themeSwitcherMoon, #themeSwitcherSun {
+#themeSwitcherMoon,
+#themeSwitcherSun {
   width: 100%;
   height: 100%;
   display: none;
 }
 
-#themeSwitcherSun {
+#themeSwitcherMoon {
   display: block;
 }
