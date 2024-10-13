@@ -26,7 +26,7 @@
     --color-text: #CDD6F4;
     --color-subtext: #5C5F77;
 
-
+    background: var(--color-base);
 }
 
 *,
@@ -58,8 +58,9 @@
     align-items: start;
     align-content: stretch;
     justify-content: space-between;
-    gap: 25px;
-    padding: 50px;
+    gap: 5rem;
+    padding: 3rem;
+    /* This is probably super unstable. */
     min-height: 100vh;
 }
 
@@ -70,7 +71,9 @@
     align-items: start;
     align-content: stretch;
     justify-content: start;
-    gap: 50px;
+    gap: 3rem;
+
+    width: 100%;
 }
 
 header {
@@ -80,6 +83,9 @@ header {
     align-items: start;
     align-content: start;
     justify-content: space-between;
+    gap: 2rem;
+
+    width: 100%
 }
 
 .contact-links {
@@ -89,17 +95,25 @@ header {
     align-items: start;
     align-content: stretch;
     justify-content: start;
-    row-gap: 22px;
+    row-gap: 1rem;
+
+    padding: 0;
+    list-style-type: none;
 }
 
-.bio {
+main {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: start;
     align-content: stretch;
     justify-content: start;
-    gap: 60px;
+    gap: 4rem;
+}
+
+.bio p {
+    margin-top: 1rem;
+    max-width: 45ch;
 }
 
 .site-nav-links {
@@ -109,7 +123,9 @@ header {
     align-items: start;
     align-content: stretch;
     justify-content: start;
-    gap: 5px;
+    gap: 1rem;
+
+    list-style-type: square;
 }
 
 footer {
@@ -119,7 +135,7 @@ footer {
     align-items: start;
     align-content: stretch;
     justify-content: start;
-    gap: 15px;
+    gap: 1rem;
 }
 
 a {}
