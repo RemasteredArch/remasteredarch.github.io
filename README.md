@@ -8,6 +8,16 @@ then a `projects.html` to show off various coding projects.
 Lastly, a blog using a static site generator of some kind,
 probably [Zola](https://www.getzola.org/) because Rust.
 
+## Mockup
+
+This is the mockup for `index.html`,
+designed in [Penpot](http://penpot.app).
+It is not perfect by any means ---
+subtext is inaccessibly dim, using an octopus emoji to represent GitHub doesn't really work, etc.
+--- but it is the guiding light.
+
+![A mockup for a simple home page](./docs/mockup.png "mockup")
+
 ## License
 
 `remasteredarch.net` is licensed under the GNU Affero General Public License version 3, or (at your option) any later version.
