@@ -35,15 +35,27 @@
         <header>
             <h1 class="font-sans-h1">Hey, I'm Arch. &#x1F44B;</h1>
             <ul class="contact-links font-color-subtext font-mono-text">
-                <!-- Starts with a pride flag emoji. -->
-                <li>&#x1F3F3;&#xFE0F;&#x200D;&#x1F308; He/they</li>
-                <!-- Starts with an upload emoji. -->
                 <li>
-                    <img src="assets/img/Git-Icon-White.svg" class="text-icon" />
-                    <a href="https://github.com/RemasteredArch/">RemasteredArch</a>
+                    <div aria-hidden="true" class="contact-icon">
+                        <!-- The pride flag emoji. -->
+                        &#x1F3F3;&#xFE0F;&#x200D;&#x1F308;
+                    </div>
+                    <div>He/they</div>
                 </li>
-                <!-- Starts with an email emoji. -->
-                <li>&#x1F4E7; RemasteredArch (AT) gmail.com</li>
+                <li>
+                    <div aria-hidden="true" class="contact-icon">
+                        <!-- The Git logomark. -->
+                        <img src="assets/img/Git-Icon-White.svg" class="inline-icon" />
+                    </div>
+                    <div><a href="https://github.com/RemasteredArch/">RemasteredArch</a></div>
+                </li>
+                <li>
+                    <div aria-hidden="true" class="contact-icon">
+                        <!-- The email emoji. -->
+                        &#x1F4E7;
+                    </div>
+                    <div>RemasteredArch (AT) gmail.com</div>
+                </li>
             </ul>
         </header>
         <main>
@@ -58,10 +70,12 @@
                     hiking, and mountain biking.
                 </p>
             </div>
-            <ul class="site-nav-links font-sans-h4">
-                <li><a href="./projects.html">Projects</a></li>
-                <li><a href="./blog.html">Blog</a></li>
-            </ul>
+            <nav>
+                <ul class="site-nav-links font-sans-h4">
+                    <li><a href="./projects.html">Projects</a></li>
+                    <li><a href="./blog.html">Blog</a></li>
+                </ul>
+            </nav>
         </main>
     </div>
     <footer class="font-color-subtext font-mono-subtext">
