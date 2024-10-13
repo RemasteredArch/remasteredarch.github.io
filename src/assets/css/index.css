@@ -24,7 +24,15 @@
      * <https://catppuccin.com/> */
     --color-base: #1E1E2E;
     --color-text: #CDD6F4;
-    --color-subtext: #5C5F77;
+    --color-subtext-1: #BAC2DE;
+    --color-overlay-1: #7F849C;
+    --color-sky: #89DCEB;
+    --color-lavender: #B4BEFE;
+    --color-blue: #89B4FA;
+
+    --color-link: var(--color-blue);
+    --color-link-visited: var(--color-lavender);
+    --color-link-hover: var(--color-sky);
 
     background: var(--color-base);
 }
@@ -41,10 +49,14 @@
 
 .font-color-text {
     color: var(--color-text);
+
 }
 
 .font-color-subtext {
-    color: var(--color-subtext);
+    color: var(--color-overlay-1);
+
+    --color-link: var(--color-overlay-1);
+    --color-link-visited: var(--color-link);
 }
 
 .bg-color-base {
@@ -138,4 +150,17 @@ footer {
     gap: 1rem;
 }
 
-a {}
+a {
+    color: var(--color-link);
+    text-decoration-style: dotted;
+}
+
+a:visited {
+    color: var(--color-link-visited);
+}
+
+a:hover,
+a:focus {
+    color: var(--color-link-hover);
+    text-decoration-style: solid;
+}
