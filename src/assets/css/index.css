@@ -1,0 +1,125 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ *
+ * Copyright © 2024 RemasteredArch
+ *
+ * This file is part of `remasteredarch.net`.
+ *
+ * `remasteredarch.net` is free software: you can redistribute it and/or modify it under the terms
+ * of the GNU Affero General Public License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * `remasteredarch.net` is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along with
+ * `remasteredarch.net`. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+:root {
+    /* Colors from Catppuccin Mocha
+     * Copyright 2021 Catppuccin
+     * MIT license
+     * <https://catppuccin.com/> */
+    --color-base: #1E1E2E;
+    --color-text: #CDD6F4;
+    --color-subtext: #5C5F77;
+
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+.font-color-text {
+    color: var(--color-text);
+}
+
+.font-color-subtext {
+    color: var(--color-subtext);
+}
+
+.bg-color-base {
+    background-color: var(--color-base);
+}
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: stretch;
+    justify-content: space-between;
+    gap: 25px;
+    padding: 50px;
+    min-height: 100vh;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: stretch;
+    justify-content: start;
+    gap: 50px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: start;
+    justify-content: space-between;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: stretch;
+    justify-content: start;
+    row-gap: 22px;
+}
+
+.bio {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: stretch;
+    justify-content: start;
+    gap: 60px;
+}
+
+.site-nav-links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: stretch;
+    justify-content: start;
+    gap: 5px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: stretch;
+    justify-content: start;
+    gap: 15px;
+}
+
+a {}

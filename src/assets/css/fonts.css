@@ -1,0 +1,122 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ *
+ * Copyright © 2024 RemasteredArch
+ *
+ * This file is part of `remasteredarch.net`.
+ *
+ * `remasteredarch.net` is free software: you can redistribute it and/or modify it under the terms
+ * of the GNU Affero General Public License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * `remasteredarch.net` is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along with
+ * `remasteredarch.net`. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* Plex Mono Regular */
+@font-face {
+    font-family: "IBM Plex Mono";
+    src: url("../font/ibm-plex-mono/IBMPlexMono-Regular.woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Plex Mono Medium */
+@font-face {
+    font-family: "IBM Plex Mono";
+    src: url("../font/ibm-plex-mono/IBMPlexMono-Medium.woff2");
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Plex Sans Regular */
+@font-face {
+    font-family: "IBM Plex Sans";
+    src: url("../font/ibm-plex-sans/IBMPlexSans-Regular.woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Plex Sans SemiBold */
+@font-face {
+    font-family: "IBM Plex Sans";
+    src: url("../font/ibm-plex-sans/IBMPlexSans-SemiBold.woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Plex Sans Bold */
+@font-face {
+    font-family: "IBM Plex Sans";
+    src: url("../font/ibm-plex-sans/IBMPlexSans-Bold.woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+.font-mono-subtext {
+    font-family: "IBM Plex Mono", monospace;
+    /* TODO: Replace with rem units */
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.font-mono-text {
+    font-family: "IBM Plex Mono", monospace;
+    /* TODO: Replace with rem units */
+    font-size: 24px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.font-sans-text {
+    font-family: "IBM Plex Sans", sans-serif;
+    /* TODO: Replace with rem units */
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.font-sans-h1 {
+    font-family: "IBM Plex Sans", sans-serif;
+    /* TODO: Replace with rem units */
+    font-size: 72px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.font-sans-h2 {
+    font-family: "IBM Plex Sans", sans-serif;
+    /* TODO: Replace with rem units */
+    font-size: 60px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.font-sans-h3 {
+    font-family: "IBM Plex Sans", sans-serif;
+    /* TODO: Replace with rem units */
+    font-size: 48px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.font-sans-h4 {
+    font-family: "IBM Plex Sans", sans-serif;
+    /* TODO: Replace with rem units */
+    font-size: 36px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.2;
+}
