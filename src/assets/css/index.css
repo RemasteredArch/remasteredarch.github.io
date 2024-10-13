@@ -47,9 +47,23 @@
     margin: 0;
 }
 
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+.text-icon {
+    vertical-align: middle;
+    display: inline;
+    height: 1em;
+}
+
 .font-color-text {
     color: var(--color-text);
-
 }
 
 .font-color-subtext {
