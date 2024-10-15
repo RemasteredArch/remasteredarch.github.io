@@ -1,0 +1,20 @@
+---
+interface Props {
+    project_name: string;
+    project_link: string;
+    license_name: string;
+    license_link: string;
+    copyright_holder: string;
+    copyright_year: string;
+}
+
+const { project_name, project_link, license_name, license_link, copyright_holder, copyright_year } =
+    Astro.props;
+---
+
+<p>
+    This website uses <a href={project_link}>{project_name}</a>, licensed under the terms of the <a
+        href={license_link}>{license_name}</a
+    >. Copyright &copy; {copyright_year}
+    {copyright_holder}.
+</p>
