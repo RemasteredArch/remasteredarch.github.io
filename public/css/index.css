@@ -22,13 +22,13 @@
      * Copyright 2021 Catppuccin
      * MIT license
      * <https://catppuccin.com/> */
-    --color-base: #1E1E2E;
-    --color-text: #CDD6F4;
-    --color-subtext-1: #BAC2DE;
-    --color-overlay-1: #7F849C;
-    --color-sky: #89DCEB;
-    --color-lavender: #B4BEFE;
-    --color-blue: #89B4FA;
+    --color-base: #1e1e2e;
+    --color-text: #cdd6f4;
+    --color-subtext-1: #bac2de;
+    --color-overlay-1: #7f849c;
+    --color-sky: #89dceb;
+    --color-lavender: #b4befe;
+    --color-blue: #89b4fa;
 
     --color-link: var(--color-blue);
     --color-link-visited: var(--color-lavender);
@@ -111,7 +111,7 @@ header {
     justify-content: space-between;
     gap: 2rem;
 
-    width: 100%
+    width: 100%;
 }
 
 .contact-links {
