@@ -1,0 +1,29 @@
+---
+interface Props {
+    title: string;
+    author: string;
+    description: string;
+}
+
+const { title, author, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+
+        <meta name="author" content={author} />
+        <meta name="description" content={description} />
+        <meta name="color-scheme" content="dark" />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
+<style is:global></style>

@@ -1,121 +1,103 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+---
+import Page from "../layouts/Page.astro";
 
-<!--
- - SPDX-License-Identifier: AGPL-3.0-or-later
- -
- - Copyright © 2024 RemasteredArch
- -
- - This file is part of `remasteredarch.net`.
- -
- - `remasteredarch.net` is free software: you can redistribute it and/or modify it under the terms
- - of the GNU Affero General Public License as published by the Free Software Foundation, either
- - version 3 of the License, or (at your option) any later version.
- -
- - `remasteredarch.net` is distributed in the hope that it will be useful, but WITHOUT ANY
- - WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- - PURPOSE. See the GNU Affero General Public License for more details.
- -
- - You should have received a copy of the GNU Affero General Public License along with
- - `remasteredarch.net`. If not, see <https://www.gnu.org/licenses/>.
--->
+// SPDX-License-Identifier: AGPL-3.0-or-later
+//
+// Copyright © 2024 RemasteredArch
+//
+// This file is part of `remasteredarch.net`.
+//
+// `remasteredarch.net` is free software: you can redistribute it and/or modify it under the terms
+// of the GNU Affero General Public License as published by the Free Software Foundation, either
+// version 3 of the License, or (at your option) any later version.
+//
+// `remasteredarch.net` is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+// PURPOSE. See the GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License along with
+// `remasteredarch.net`. If not, see <https://www.gnu.org/licenses/>.
+---
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Arch's Site</title>
-    <meta name="author" content="RemasteredArch">
-    <meta name="description" content="RemasteredArch's home page">
-    <meta name="color-scheme" content="dark">
-
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/fonts.css">
-    <link rel="icon" href="assets/img/favicon.png">
-</head>
-
-<body class="main-page font-sans-text font-color-text bg-color-base">
-    <div class="content">
-        <header>
-            <h1 class="font-sans-h1">Hey, I'm Arch. &#x1F44B;</h1>
-            <ul class="contact-links font-color-subtext font-mono-text">
-                <li>
-                    <div aria-hidden="true" class="contact-icon">
-                        <!-- The pride flag emoji. -->
-                        &#x1F3F3;&#xFE0F;&#x200D;&#x1F308;
-                    </div>
-                    <div>He/they</div>
-                </li>
-                <li>
-                    <div aria-hidden="true" class="contact-icon">
-                        <!-- The Git logomark. -->
-                        <img alt="git" src="assets/img/Git-Icon-White.svg" class="inline-icon">
-                    </div>
-                    <div><a href="https://github.com/RemasteredArch/">RemasteredArch</a></div>
-                </li>
-                <li>
-                    <div aria-hidden="true" class="contact-icon">
-                        <!-- The email emoji. -->
-                        &#x1F4E7;
-                    </div>
-                    <div>RemasteredArch (AT) gmail.com</div>
-                </li>
-            </ul>
-        </header>
-        <main>
-            <div class="bio">
-                <p>
-                    I'm a nerd with a passion for Rust, computer science, Linux, Bash, Neovim,
-                    toolchains, networking, and free and open source software
-                    licensing/compliance/security.
-                </p>
-                <p>
-                    Outside of tech, I enjoy art photography, poetry, American Sign Language,
-                    hiking, and mountain biking.
-                </p>
-            </div>
-            <nav>
-                <ul class="site-nav-links font-sans-h4">
-                    <li><a href="./projects.html">Projects</a></li>
-                    <li><a href="./blog.html">Blog</a></li>
+<Page title="Arch's Site" author="RemasteredArch" description="RemasteredArch's home page">
+    <body class="main-page font-sans-text font-color-text bg-color-base">
+        <div class="content">
+            <header>
+                <h1 class="font-sans-h1">Hey, I'm Arch. &#x1F44B;</h1>
+                <ul class="contact-links font-color-subtext font-mono-text">
+                    <li>
+                        <div aria-hidden="true" class="contact-icon">
+                            <!-- The pride flag emoji. -->
+                            &#x1F3F3;&#xFE0F;&#x200D;&#x1F308;
+                        </div>
+                        <div>He/they</div>
+                    </li>
+                    <li>
+                        <div aria-hidden="true" class="contact-icon">
+                            <!-- The Git logomark. -->
+                            <img alt="git" src="/img/Git-Icon-White.svg" class="inline-icon" />
+                        </div>
+                        <div><a href="https://github.com/RemasteredArch/">RemasteredArch</a></div>
+                    </li>
+                    <li>
+                        <div aria-hidden="true" class="contact-icon">
+                            <!-- The email emoji. -->
+                            &#x1F4E7;
+                        </div>
+                        <div>RemasteredArch (AT) gmail.com</div>
+                    </li>
                 </ul>
-            </nav>
-        </main>
-    </div>
-    <footer class="font-color-subtext font-mono-subtext">
-        <p>
-            This website is free and
-            <a href="https://github.com/RemasteredArch/remasteredarch.github.io/">open source</a>
-            software, licensed to you under the terms of the
-            <a href="https://www.gnu.org/licenses/">GNU Affero General Public License</a>
-            as published by the Free Software Foundation,
-            either version 3 of the License, or (at your option) any later version.
-            Copyright &copy; 2024 RemasteredArch.
-        </p>
-        <p>
-            This website uses
-            <a href="https://www.ibm.com/plex/">IBM Plex Sans</a>,
-            licensed under the terms of the
-            <a href="http://scripts.sil.org/OFL">SIL Open Font License</a>,
-            Version 1.1.
-            Copyright &copy; 2017 IBM Corp. with Reserved Font Name "Plex".
-        </p>
-        <p>
-            This website uses
-            <a href="https://catppuccin.com/">Catppuccin</a>,
-            licensed under the terms of the
-            <a href="https://github.com/catppuccin/palette/blob/a52db8d/LICENSE">MIT license</a>.
-            Copyright &copy; 2021 Catppuccin.
-        </p>
-        <p>
-            This website uses the
-            <a href="https://git-scm.com/downloads/logos">Git logomark</a>
-            by Jason Long,
-            licensed under the terms of the
-            <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons 3.0 Unported
-                License</a>.
-        </p>
-    </footer>
-</body>
-
-</html>
+            </header>
+            <main>
+                <div class="bio">
+                    <p>
+                        I'm a nerd with a passion for Rust, computer science, Linux, Bash, Neovim,
+                        toolchains, networking, and free and open source software
+                        licensing/compliance/security.
+                    </p>
+                    <p>
+                        Outside of tech, I enjoy art photography, poetry, American Sign Language,
+                        hiking, and mountain biking.
+                    </p>
+                </div>
+                <nav>
+                    <ul class="site-nav-links font-sans-h4">
+                        <li><a href="./projects.html">Projects</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
+                    </ul>
+                </nav>
+            </main>
+        </div>
+        <footer class="font-color-subtext font-mono-subtext">
+            <p>
+                This website is free and
+                <a href="https://github.com/RemasteredArch/remasteredarch.github.io/">open source</a
+                >
+                software, licensed to you under the terms of the
+                <a href="https://www.gnu.org/licenses/">GNU Affero General Public License</a>
+                as published by the Free Software Foundation, either version 3 of the License, or (at
+                your option) any later version. Copyright &copy; 2024 RemasteredArch.
+            </p>
+            <p>
+                This website uses <a href="https://www.ibm.com/plex/">IBM Plex Sans</a>, licensed
+                under the terms of the
+                <a href="http://scripts.sil.org/OFL">SIL Open Font License</a>, Version 1.1.
+                Copyright &copy; 2017 IBM Corp. with Reserved Font Name "Plex".
+            </p>
+            <p>
+                This website uses
+                <a href="https://catppuccin.com/">Catppuccin</a>, licensed under the terms of the
+                <a href="https://github.com/catppuccin/palette/blob/a52db8d/LICENSE">MIT license</a
+                >. Copyright &copy; 2021 Catppuccin.
+            </p>
+            <p>
+                This website uses the
+                <a href="https://git-scm.com/downloads/logos">Git logomark</a>
+                by Jason Long, licensed under the terms of the
+                <a href="https://creativecommons.org/licenses/by/3.0/"
+                    >Creative Commons 3.0 Unported License</a
+                >.
+            </p>
+        </footer>
+    </body>
+</Page>
