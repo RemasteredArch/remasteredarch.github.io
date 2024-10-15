@@ -20,7 +20,7 @@
 /* Plex Mono Regular */
 @font-face {
     font-family: "IBM Plex Mono";
-    src: url("../font/ibm-plex-mono/IBMPlexMono-Regular.woff2");
+    src: url("/font/ibm-plex-mono/IBMPlexMono-Regular.woff2");
     font-weight: 400;
     font-style: normal;
 }
@@ -28,7 +28,7 @@
 /* Plex Mono Medium */
 @font-face {
     font-family: "IBM Plex Mono";
-    src: url("../font/ibm-plex-mono/IBMPlexMono-Medium.woff2");
+    src: url("/font/ibm-plex-mono/IBMPlexMono-Medium.woff2");
     font-weight: 500;
     font-style: normal;
 }
@@ -36,7 +36,7 @@
 /* Plex Sans Regular */
 @font-face {
     font-family: "IBM Plex Sans";
-    src: url("../font/ibm-plex-sans/IBMPlexSans-Regular.woff2");
+    src: url("/font/ibm-plex-sans/IBMPlexSans-Regular.woff2");
     font-weight: 400;
     font-style: normal;
 }
@@ -44,7 +44,7 @@
 /* Plex Sans SemiBold */
 @font-face {
     font-family: "IBM Plex Sans";
-    src: url("../font/ibm-plex-sans/IBMPlexSans-SemiBold.woff2");
+    src: url("/font/ibm-plex-sans/IBMPlexSans-SemiBold.woff2");
     font-weight: 600;
     font-style: normal;
 }
@@ -52,7 +52,7 @@
 /* Plex Sans Bold */
 @font-face {
     font-family: "IBM Plex Sans";
-    src: url("../font/ibm-plex-sans/IBMPlexSans-Bold.woff2");
+    src: url("/font/ibm-plex-sans/IBMPlexSans-Bold.woff2");
     font-weight: 700;
     font-style: normal;
 }
