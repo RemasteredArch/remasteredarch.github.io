@@ -6,6 +6,9 @@ interface Props {
 }
 
 const { title, author, description } = Astro.props;
+
+import "../styles/index.css";
+import "../styles/fonts.css";
 ---
 
 <!doctype html>
@@ -22,8 +25,7 @@ const { title, author, description } = Astro.props;
         <meta name="description" content={description} />
         <meta name="color-scheme" content="dark" />
     </head>
-    <body>
+    <body class="main-page font-sans-text font-color-text bg-color-base">
         <slot />
     </body>
 </html>
-<style is:global></style>
