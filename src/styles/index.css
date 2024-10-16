@@ -77,31 +77,6 @@ svg {
     background-color: var(--color-base);
 }
 
-.main-page {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: start;
-    align-content: stretch;
-    justify-content: space-between;
-    gap: 5rem;
-    padding: 3rem;
-    /* This is probably super unstable. */
-    min-height: 100vh;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: start;
-    align-content: stretch;
-    justify-content: start;
-    gap: 3rem;
-
-    width: 100%;
-}
-
 header {
     display: flex;
     flex-direction: row;
@@ -122,33 +97,6 @@ main {
     align-content: stretch;
     justify-content: start;
     gap: 4rem;
-}
-
-.bio p {
-    margin-top: 1rem;
-    max-width: 45ch;
-}
-
-.site-nav-links {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: start;
-    align-content: stretch;
-    justify-content: start;
-    gap: 1rem;
-
-    list-style-type: square;
-}
-
-footer {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: start;
-    align-content: stretch;
-    justify-content: start;
-    gap: 1rem;
 }
 
 a {

@@ -24,47 +24,45 @@ import IconListItem from "../components/IconListItem.astro";
 ---
 
 <Page title="Arch's Site" author="RemasteredArch" description="RemasteredArch's home page">
-    <div class="content">
-        <header>
-            <h1 class="font-sans-h1">Hey, I'm Arch. &#x1F44B;</h1>
-            <IconList>
-                <IconListItem>
-                    <!-- The pride flag emoji. -->
-                    <span slot="icon">&#x1F3F3;&#xFE0F;&#x200D;&#x1F308;</span>
-                    <span slot="text">He/they</span>
-                </IconListItem>
-                <IconListItem>
-                    <img slot="icon" alt="git" src="/img/Git-Icon-White.svg" class="inline-icon" />
-                    <a slot="text" href="https://github.com/RemasteredArch/">RemasteredArch</a>
-                </IconListItem>
-                <IconListItem>
-                    <!-- The email emoji. -->
-                    <span slot="icon">&#x1F4E7;</span>
-                    <span slot="text">RemasteredArch (AT) gmail.com</span>
-                </IconListItem>
-            </IconList>
-        </header>
-        <main>
-            <div class="bio">
-                <p>
-                    I'm a nerd with a passion for Rust, computer science, Linux, Bash, Neovim,
-                    toolchains, networking, and free and open source software
-                    licensing/compliance/security.
-                </p>
-                <p>
-                    Outside of tech, I enjoy art photography, poetry, American Sign Language,
-                    hiking, and mountain biking.
-                </p>
-            </div>
-            <nav>
-                <ul class="site-nav-links font-sans-h4">
-                    <li><a href="./projects.html">Projects</a></li>
-                    <li><a href="./blog.html">Blog</a></li>
-                </ul>
-            </nav>
-        </main>
-    </div>
-    <Footer>
+    <header>
+        <h1 class="font-sans-h1">Hey, I'm Arch. &#x1F44B;</h1>
+        <IconList>
+            <IconListItem>
+                <!-- The pride flag emoji. -->
+                <span slot="icon">&#x1F3F3;&#xFE0F;&#x200D;&#x1F308;</span>
+                <span slot="text">He/they</span>
+            </IconListItem>
+            <IconListItem>
+                <img slot="icon" alt="git" src="/img/Git-Icon-White.svg" class="inline-icon" />
+                <a slot="text" href="https://github.com/RemasteredArch/">RemasteredArch</a>
+            </IconListItem>
+            <IconListItem>
+                <!-- The email emoji. -->
+                <span slot="icon">&#x1F4E7;</span>
+                <span slot="text">RemasteredArch (AT) gmail.com</span>
+            </IconListItem>
+        </IconList>
+    </header>
+    <main>
+        <div class="bio">
+            <p>
+                I'm a nerd with a passion for Rust, computer science, Linux, Bash, Neovim,
+                toolchains, networking, and free and open source software
+                licensing/compliance/security.
+            </p>
+            <p>
+                Outside of tech, I enjoy art photography, poetry, American Sign Language, hiking,
+                and mountain biking.
+            </p>
+        </div>
+        <nav>
+            <ul class="site-nav-links font-sans-h4">
+                <li><a href="./projects.html">Projects</a></li>
+                <li><a href="./blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </main>
+    <Footer slot="footer">
         <LegalItem
             project_name="Git logomark"
             project_link="https://git-scm.com/downloads/logos"
@@ -75,3 +73,22 @@ import IconListItem from "../components/IconListItem.astro";
         />
     </Footer>
 </Page>
+
+<style>
+    .bio p {
+        margin-top: 1rem;
+        max-width: 45ch;
+    }
+
+    .site-nav-links {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        align-content: stretch;
+        justify-content: start;
+        gap: 1rem;
+
+        list-style-type: square;
+    }
+</style>
