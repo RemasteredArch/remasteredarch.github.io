@@ -19,35 +19,30 @@
 import Page from "../layouts/Page.astro";
 import Footer from "../components/Footer.astro";
 import LegalItem from "../components/LegalItem.astro";
+import IconList from "../components/IconList.astro";
+import IconListItem from "../components/IconListItem.astro";
 ---
 
 <Page title="Arch's Site" author="RemasteredArch" description="RemasteredArch's home page">
     <div class="content">
         <header>
             <h1 class="font-sans-h1">Hey, I'm Arch. &#x1F44B;</h1>
-            <ul class="contact-links font-color-subtext font-mono-text">
-                <li>
-                    <div aria-hidden="true" class="contact-icon">
-                        <!-- The pride flag emoji. -->
-                        &#x1F3F3;&#xFE0F;&#x200D;&#x1F308;
-                    </div>
-                    <div>He/they</div>
-                </li>
-                <li>
-                    <div aria-hidden="true" class="contact-icon">
-                        <!-- The Git logomark. -->
-                        <img alt="git" src="/img/Git-Icon-White.svg" class="inline-icon" />
-                    </div>
-                    <div><a href="https://github.com/RemasteredArch/">RemasteredArch</a></div>
-                </li>
-                <li>
-                    <div aria-hidden="true" class="contact-icon">
-                        <!-- The email emoji. -->
-                        &#x1F4E7;
-                    </div>
-                    <div>RemasteredArch (AT) gmail.com</div>
-                </li>
-            </ul>
+            <IconList>
+                <IconListItem>
+                    <!-- The pride flag emoji. -->
+                    <span slot="icon">&#x1F3F3;&#xFE0F;&#x200D;&#x1F308;</span>
+                    <span slot="text">He/they</span>
+                </IconListItem>
+                <IconListItem>
+                    <img slot="icon" alt="git" src="/img/Git-Icon-White.svg" class="inline-icon" />
+                    <a slot="text" href="https://github.com/RemasteredArch/">RemasteredArch</a>
+                </IconListItem>
+                <IconListItem>
+                    <!-- The email emoji. -->
+                    <span slot="icon">&#x1F4E7;</span>
+                    <span slot="text">RemasteredArch (AT) gmail.com</span>
+                </IconListItem>
+            </IconList>
         </header>
         <main>
             <div class="bio">
