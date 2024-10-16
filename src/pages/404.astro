@@ -1,0 +1,40 @@
+---
+// SPDX-License-Identifier: AGPL-3.0-or-later
+//
+// Copyright © 2024 RemasteredArch
+//
+// This file is part of `remasteredarch.net`.
+//
+// `remasteredarch.net` is free software: you can redistribute it and/or modify it under the terms
+// of the GNU Affero General Public License as published by the Free Software Foundation, either
+// version 3 of the License, or (at your option) any later version.
+//
+// `remasteredarch.net` is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+// PURPOSE. See the GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License along with
+// `remasteredarch.net`. If not, see <https://www.gnu.org/licenses/>.
+
+import Page from "../layouts/Page.astro";
+import NavHeader from "../components/NavHeader.astro";
+import NavList from "../components/NavList.astro";
+---
+
+<Page
+    title="Error 404"
+    author="RemasteredArch"
+    description="404 error page for RemasteredArch's website">
+    <NavHeader title="Error 404 (Oops.)" />
+    <main>
+        <NavList>
+            <li>Head back <a href="/">home</a></li>
+            <li>
+                File an <a
+                    href="https://github.com/RemasteredArch/remasteredarch.github.io/issues/new"
+                    >issue</a
+                >
+            </li>
+        </NavList>
+    </main>
+</Page>

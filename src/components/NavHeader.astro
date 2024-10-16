@@ -1,0 +1,30 @@
+---
+interface Props {
+    title: string;
+}
+const { title } = Astro.props;
+
+import IconList from "../components/IconList.astro";
+import IconListItem from "../components/IconListItem.astro";
+---
+
+<header>
+    <h1 class="font-sans-h1">{title}</h1>
+    <IconList>
+        <IconListItem>
+            <span slot="icon">&lt;-</span>
+            <a slot="text" href="/">Home</a>
+        </IconListItem>
+    </IconList>
+</header>
+
+<style>
+    footer {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        gap: 1rem;
+    }
+</style>
