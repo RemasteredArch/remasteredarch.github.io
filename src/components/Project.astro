@@ -8,7 +8,7 @@ interface Props {
 const { title, description, links } = Astro.props.project.data;
 ---
 
-<div>
+<li class="card">
     <h2>{title}</h2>
     <p>{description}</p>
     <ul>
@@ -20,10 +20,10 @@ const { title, description, links } = Astro.props.project.data;
             ))
         }
     </ul>
-</div>
+</li>
 
 <style>
-    div {
+    .card {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;

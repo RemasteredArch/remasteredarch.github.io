@@ -56,12 +56,6 @@ svg {
     max-width: 100%;
 }
 
-.inline-icon {
-    vertical-align: middle;
-    display: inline;
-    height: 1em;
-}
-
 .font-color-text {
     color: var(--color-text);
 }

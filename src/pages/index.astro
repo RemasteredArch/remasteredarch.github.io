@@ -22,6 +22,9 @@ import LegalItem from "../components/LegalItem.astro";
 import IconList from "../components/IconList.astro";
 import IconListItem from "../components/IconListItem.astro";
 import NavList from "../components/NavList.astro";
+import GitIcon from "../components/icons/GitIcon.astro";
+import EmailIcon from "../components/icons/EmailIcon.astro";
+import PrideIcon from "../components/icons/PrideIcon.astro";
 ---
 
 <Page title="Arch's Site" author="RemasteredArch" description="RemasteredArch's home page">
@@ -29,17 +32,15 @@ import NavList from "../components/NavList.astro";
         <h1 class="font-sans-h1">Hey, I'm Arch. &#x1F44B;</h1>
         <IconList>
             <IconListItem>
-                <!-- The pride flag emoji. -->
-                <span slot="icon">&#x1F3F3;&#xFE0F;&#x200D;&#x1F308;</span>
+                <PrideIcon slot="icon" />
                 <span slot="text">He/they</span>
             </IconListItem>
             <IconListItem>
-                <img slot="icon" alt="git" src="/img/Git-Icon-White.svg" class="inline-icon" />
+                <GitIcon slot="icon" />
                 <a slot="text" href="https://github.com/RemasteredArch/">RemasteredArch</a>
             </IconListItem>
             <IconListItem>
-                <!-- The email emoji. -->
-                <span slot="icon">&#x1F4E7;</span>
+                <EmailIcon slot="icon" />
                 <span slot="text">RemasteredArch (AT) gmail.com</span>
             </IconListItem>
         </IconList>
