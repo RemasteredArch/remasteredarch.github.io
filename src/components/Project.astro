@@ -1,11 +1,24 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import BlogIcon from "./icons/BlogIcon.astro";
+import GitIcon from "./icons/GitIcon.astro";
+import WebsiteIcon from "./icons/WebsiteIcon.astro";
 
 interface Props {
     project: CollectionEntry<"projects">;
 }
 
-const { title, description, links } = Astro.props.project.data;
+const { title, description, links: raw_links } = Astro.props.project.data;
+
+const icon_map = {
+    "blog post": BlogIcon,
+    git: GitIcon,
+    website: WebsiteIcon,
+};
+
+const links = raw_links.map(({ type, url }) => {
+    return { Icon: icon_map[type], url };
+});
 ---
 
 <li class="card">
@@ -13,9 +26,11 @@ const { title, description, links } = Astro.props.project.data;
     <p>{description}</p>
     <ul>
         {
-            links.map(({ type, url }) => (
+            links.map(({ Icon, url }) => (
                 <li>
-                    <a href={url}>{type}</a>
+                    <a href={url}>
+                        <Icon />
+                    </a>
                 </li>
             ))
         }
