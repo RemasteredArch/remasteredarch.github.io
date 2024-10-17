@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    project: CollectionEntry<"projects">;
+}
+
+const { title, description, links } = Astro.props.project.data;
+---
+
+<div>
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <ul>
+        {
+            links.map(({ type, url }) => (
+                <li>
+                    <a href={url}>{type}</a>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        row-gap: 1rem;
+        padding: 1.5rem;
+
+        max-width: 35ch;
+        border-radius: 1rem;
+        border-bottom: 1px solid var(--color-overlay-1);
+    }
+
+    h2 {
+        align-self: center;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+        align-content: start;
+        justify-content: start;
+        gap: 1rem;
+
+        width: 100%;
+        list-style: none;
+        padding: 0;
+    }
+</style>

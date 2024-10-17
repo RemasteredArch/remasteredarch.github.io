@@ -1,0 +1,5 @@
+title: dotfiles
+description: A collection of various scripts and configuration files.
+first_commit: 2024-04-06T17:02:14-07:00
+links:
+    - {type: git, url: "https://github.com/RemasteredArch/dotfiles/"}
