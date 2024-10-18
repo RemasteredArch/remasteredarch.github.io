@@ -2,5 +2,5 @@ title: Personal Website
 description: This very site! It got me into programming all the way back in 2021. This is now its third rewrite, this time built with Astro.
 first_commit: 2021-03-23T14:36:54-07:00
 links:
-    - {type: git, url: "https://github.com/RemasteredArch/remasteredarch.github.io/"}
+    - {type: git, url: "https://github.com/RemasteredArch/remasteredarch.github.io"}
     - {type: website, url: /}
