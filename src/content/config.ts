@@ -16,6 +16,28 @@ const projects = defineCollection({
     }),
 });
 
+const blog = defineCollection({
+    type: "content",
+    schema: zod.object({
+        title: zod.string(),
+        description: zod.string(),
+        published: zod.date(),
+        last_updated: zod.date(),
+        tags: zod.array(reference("tags")),
+    }),
+});
+
+const tags = defineCollection({
+    type: "data",
+    schema: zod.object({
+        name: zod.string(),
+        description: zod.string(),
+        slug: zod.string(),
+    }),
+});
+
 export const collections = {
     projects,
+    blog,
+    tags,
 };
