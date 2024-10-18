@@ -8,7 +8,7 @@ interface Props {
     project: CollectionEntry<"projects">;
 }
 
-const { title, description, links: raw_links } = Astro.props.project.data;
+const { title, description, first_commit, links: raw_links } = Astro.props.project.data;
 
 const icon_map = {
     "blog post": BlogIcon,
@@ -24,6 +24,7 @@ const links = raw_links.map(({ type, url }) => {
 <li class="card">
     <h2>{title}</h2>
     <p>{description}</p>
+    <p class="font-mono-subtext">First commit: {first_commit.toLocaleDateString()}</p>
     <ul>
         {
             links.map(({ Icon, url }) => (
