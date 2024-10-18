@@ -2,4 +2,4 @@ title: nvim-config
 description: My personal neovim config.
 first_commit: 2024-02-02T09:38:24-08:00
 links:
-    - {type: git, url: "https://github.com/RemasteredArch/nvim-config"}
+    - { type: git, url: "https://github.com/RemasteredArch/nvim-config" }

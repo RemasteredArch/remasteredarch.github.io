@@ -2,4 +2,4 @@ title: no_utils
 description: Rust rewrites of various programs, usually coreutils, and other small Rust programs. Built for learning.
 first_commit: 2024-07-08T00:51:42-07:00
 links:
-    - {type: git, url: "https://github.com/RemasteredArch/no_utils"}
+    - { type: git, url: "https://github.com/RemasteredArch/no_utils" }

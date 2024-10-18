@@ -2,4 +2,4 @@ title: ip_geo
 description: IP Geolocation for Grafana Geomap
 first_commit: 2024-03-30T16:08:28-07:00
 links:
-    - {type: git, url: "https://github.com/RemasteredArch/ip_geo"}
+    - { type: git, url: "https://github.com/RemasteredArch/ip_geo" }
