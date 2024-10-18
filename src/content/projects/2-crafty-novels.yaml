@@ -1,0 +1,5 @@
+title: crafty_novels
+description: A library & application for converting document formats. Designed for Stendhal book exports.
+first_commit: 2024-08-15T22:05:20-07:00
+links:
+    - {type: git, url: "https://github.com/RemasteredArch/crafty_novels"}
