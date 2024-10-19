@@ -21,8 +21,9 @@ const blog = defineCollection({
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
+        author: reference("authors"),
         published: zod.date(),
-        last_updated: zod.date(),
+        last_updated: zod.date().optional(),
         tags: zod.array(reference("tags")),
     }),
 });
