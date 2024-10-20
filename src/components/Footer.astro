@@ -10,7 +10,9 @@ import LegalItem from "./LegalItem.astro";
             software, licensed to you under the terms of the
             <a href="https://www.gnu.org/licenses/">GNU Affero General Public License</a>
             as published by the Free Software Foundation, either version 3 of the License, or (at your
-            option) any later version. Copyright &copy; 2024 RemasteredArch.
+            option) any later version. Copyright &copy; 2024 <span class="spiders"
+                >RemasteredArch</span
+            >.
         </p>
         <LegalItem
             project_name="IBM Plex Sans"
@@ -40,5 +42,9 @@ import LegalItem from "./LegalItem.astro";
         align-items: start;
         justify-content: start;
         gap: 1rem;
+    }
+
+    .spiders:hover::after {
+        content: " spiders 🕷️🕸️";
     }
 </style>
