@@ -2,36 +2,38 @@
 import LegalItem from "./LegalItem.astro";
 ---
 
-<footer class="font-color-subtext font-mono-subtext">
-    <p>
-        This website is free and
-        <a href="https://github.com/RemasteredArch/remasteredarch.github.io/">open source</a>
-        software, licensed to you under the terms of the
-        <a href="https://www.gnu.org/licenses/">GNU Affero General Public License</a>
-        as published by the Free Software Foundation, either version 3 of the License, or (at your option)
-        any later version. Copyright &copy; 2024 RemasteredArch.
-    </p>
-    <LegalItem
-        project_name="IBM Plex Sans"
-        project_link="https://www.ibm.com/plex/"
-        license_name="SIL Open Font License, Version 1.1"
-        license_link="http://scripts.sil.org/OFL"
-        copyright_holder='IBM Corp. with Reserved Font Name "Plex"'
-        copyright_year="2017"
-    />
-    <LegalItem
-        project_name="Catppuccin"
-        project_link="https://catppuccin.com/"
-        license_name="MIT license"
-        license_link="https://github.com/catppuccin/palette/blob/a52db8d/LICENSE"
-        copyright_holder="Catppuccin"
-        copyright_year="2021"
-    />
-    <slot />
+<footer class="font-color-subtext">
+    <small>
+        <p>
+            This website is free and
+            <a href="https://github.com/RemasteredArch/remasteredarch.github.io/">open source</a>
+            software, licensed to you under the terms of the
+            <a href="https://www.gnu.org/licenses/">GNU Affero General Public License</a>
+            as published by the Free Software Foundation, either version 3 of the License, or (at your
+            option) any later version. Copyright &copy; 2024 RemasteredArch.
+        </p>
+        <LegalItem
+            project_name="IBM Plex Sans"
+            project_link="https://www.ibm.com/plex/"
+            license_name="SIL Open Font License, Version 1.1"
+            license_link="http://scripts.sil.org/OFL"
+            copyright_holder='IBM Corp. with Reserved Font Name "Plex"'
+            copyright_year="2017"
+        />
+        <LegalItem
+            project_name="Catppuccin"
+            project_link="https://catppuccin.com/"
+            license_name="MIT license"
+            license_link="https://github.com/catppuccin/palette/blob/a52db8d/LICENSE"
+            copyright_holder="Catppuccin"
+            copyright_year="2021"
+        />
+        <slot />
+    </small>
 </footer>
 
 <style>
-    footer {
+    small {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;

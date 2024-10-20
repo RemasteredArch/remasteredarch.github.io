@@ -22,9 +22,9 @@ const links = raw_links.map(({ type, url }) => {
 ---
 
 <li class="card">
-    <h2>{title}</h2>
+    <h4>{title}</h4>
     <p>{description}</p>
-    <p class="font-mono-subtext">First commit: {first_commit.toLocaleDateString()}</p>
+    <small>First commit: {first_commit.toLocaleDateString()}</small>
     <ul>
         {
             links.map(({ Icon, url }) => (
@@ -54,8 +54,9 @@ const links = raw_links.map(({ type, url }) => {
         border-bottom: 1px solid var(--color-overlay-1);
     }
 
-    h2 {
+    h4 {
         align-self: center;
+        text-align: center;
     }
 
     ul {

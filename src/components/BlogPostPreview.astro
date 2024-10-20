@@ -12,9 +12,15 @@ const { title, description, published, tags } = Astro.props.blog_post.data;
 <li class="card">
     <h3><a href={`/blog/${slug}`}>{title}</a></h3>
     <p>{description}</p>
-    <p class="font-mono-subtext">Published: {published.toLocaleDateString()}</p>
+    <small>Published: {published.toLocaleDateString()}</small>
     <ul>
-        {tags.map(({ id }) => <li class="font-mono-subtext">{id}</li>)}
+        {
+            tags.map(({ id }) => (
+                <li>
+                    <small>{id}</small>
+                </li>
+            ))
+        }
     </ul>
 </li>
 
