@@ -4,6 +4,7 @@ import NavHeader from "../../components/NavHeader.astro";
 import IconListItem from "../../components/IconListItem.astro";
 import type { GetStaticPaths } from "astro";
 import { getCollection, getEntry } from "astro:content";
+import type { InferEntrySchema } from "astro:content";
 
 /// Compare whether two dates occurred on the same day.
 ///
@@ -56,6 +57,16 @@ function formatDates(
     return strings;
 }
 
+interface Author extends InferEntrySchema<"authors"> {
+    link: string;
+}
+
+type AuthorList = {
+    first: Author;
+    middle: Author[];
+    last: Author | undefined;
+};
+
 export const getStaticPaths = (async () => {
     const blog = await getCollection("blog");
 
@@ -69,20 +80,34 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 const { title, authors: author_references, description, published, last_updated } = post.data;
 
-const authors = [];
-for (const reference of author_references) {
-    authors.push((await getEntry(reference))?.data);
-}
-/// `config.ts` specifies a minimum length of 1.
-const author = authors[0]!;
-
 const { published: published_str, last_updated: last_updated_str } = formatDates(
     published,
     last_updated,
 );
+
+let author_entries = [];
+for (const reference of author_references) {
+    const entry = await getEntry(reference);
+    const { name, contact } = entry.data;
+    const link = `/blog/authors/${entry.id}/`;
+
+    author_entries.push({ link, name, contact });
+}
+const [first_author, ...middle_authors] = author_entries;
+const last_author = middle_authors.pop();
+
+if (!first_author) {
+    throw new Error("Expected at least one author");
+}
+
+let authors: AuthorList = {
+    first: first_author,
+    middle: middle_authors,
+    last: last_author,
+};
 ---
 
-<Page title={title} author={author.name} description={description}>
+<Page title={title} author={authors.first.name} description={description}>
     <NavHeader title={title}>
         <IconListItem>
             <span slot="icon">&lt;-</span>
@@ -91,7 +116,7 @@ const { published: published_str, last_updated: last_updated_str } = formatDates
     </NavHeader>
     <div class="metadata">
         <div class="description"><i>{description}</i></div>
-        <div class="author">Written by {author.name}</div>
+        <div class="author">Written by {authors.first.name}</div>
         <div class="published">
             Published
             {
