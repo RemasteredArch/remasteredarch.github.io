@@ -3,7 +3,58 @@ import Page from "../../layouts/Page.astro";
 import NavHeader from "../../components/NavHeader.astro";
 import IconListItem from "../../components/IconListItem.astro";
 import type { GetStaticPaths } from "astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+
+/// Compare whether two dates occurred on the same day.
+///
+/// Ex.
+/// - `2024-10-20T10:30Z` and `2024-10-20T15:22Z` will return `true`
+/// - `2024-10-20T10:30Z` and `2023-10-20T10:30Z` will return `false`
+function sameDay(published: Date, updated: Date): boolean {
+    // Clone values to avoid mutating the passed variables
+    const d1 = new Date(published.getTime());
+    const d2 = new Date(updated.getTime());
+
+    // Set the time of day equal
+    d1.setHours(0, 0, 0, 0);
+    d2.setHours(0, 0, 0, 0);
+
+    // Compare the date
+    return d1.getTime() === d2.getTime();
+}
+
+/// Format published date, and, if it exists, the last updated date as strings.
+///
+/// If the two dates are one the same day, the last updated date is only a time.
+function formatDates(
+    published: Date,
+    last_updated?: Date,
+): { published: string; last_updated?: string } {
+    let strings: { published: string; last_updated?: string } = {
+        // Ex. `"Friday, October 18, 2024 at 5:53:00 PM PDT"`
+        published: published.toLocaleString("en-US", {
+            dateStyle: "full",
+            timeStyle: "long",
+        }),
+    };
+
+    if (!last_updated) {
+        return strings;
+    }
+
+    if (sameDay(published, last_updated)) {
+        // Ex. `"5:54:00 PM"`
+        strings.last_updated = last_updated.toLocaleTimeString("en-US");
+    } else {
+        // Ex. `"Oct 20, 2024, 5:54:00 PM PDT"`
+        strings.last_updated = last_updated.toLocaleString("en-US", {
+            dateStyle: "medium",
+            timeStyle: "long",
+        });
+    }
+
+    return strings;
+}
 
 export const getStaticPaths = (async () => {
     const blog = await getCollection("blog");
@@ -16,15 +67,42 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
-const { title, author, description } = post.data;
+const { title, authors: author_references, description, published, last_updated } = post.data;
+
+const authors = [];
+for (const reference of author_references) {
+    authors.push((await getEntry(reference))?.data);
+}
+/// `config.ts` specifies a minimum length of 1.
+const author = authors[0]!;
+
+const { published: published_str, last_updated: last_updated_str } = formatDates(
+    published,
+    last_updated,
+);
 ---
 
-<Page title={title} author={author} description={description}>
+<Page title={title} author={author.name} description={description}>
     <NavHeader title={title}>
         <IconListItem>
             <span slot="icon">&lt;-</span>
             <a slot="text" href="/blog/">Blog</a>
         </IconListItem>
     </NavHeader>
-    <Content />
+    <div class="metadata">
+        <div class="description"><i>{description}</i></div>
+        <div class="author">Written by {author.name}</div>
+        <div class="published">
+            Published
+            {
+                // Is this in the time zone of the dev or what's embedded into the date?
+                published_str
+            }{last_updated && <span>, last updated {last_updated_str}</span>}
+        </div>
+        <!--<div class="tags">{tags}</div>-->
+    </div>
+    <hr />
+    <main>
+        <Content />
+    </main>
 </Page>

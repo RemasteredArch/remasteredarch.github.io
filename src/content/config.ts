@@ -21,10 +21,24 @@ const blog = defineCollection({
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
-        author: reference("authors"),
+        authors: reference("authors").array().min(1),
         published: zod.date(),
         last_updated: zod.date().optional(),
         tags: zod.array(reference("tags")),
+    }),
+});
+
+const authors = defineCollection({
+    type: "data",
+    schema: zod.object({
+        name: zod.string(),
+        contact: zod
+            .object({
+                email: zod.string().optional(),
+                website: zod.string().optional(),
+                socials: zod.string().array().optional(),
+            })
+            .optional(),
     }),
 });
 
@@ -33,12 +47,12 @@ const tags = defineCollection({
     schema: zod.object({
         name: zod.string(),
         description: zod.string(),
-        slug: zod.string(),
     }),
 });
 
 export const collections = {
     projects,
     blog,
+    authors,
     tags,
 };
