@@ -1,0 +1,44 @@
+---
+import type { DataEntryMap } from "astro:content";
+import type { InferEntrySchema } from "astro:content";
+import { getEntry } from "astro:content";
+
+export type AuthorReferences = {
+    collection: "authors";
+    id: keyof DataEntryMap["authors"];
+}[];
+
+export interface Author extends InferEntrySchema<"authors"> {
+    link: string;
+}
+
+export type AuthorList = {
+    first: Author;
+    middle: Author[];
+    last: Author | undefined;
+};
+
+export const resolveAuthors = async (author_references: AuthorReferences): Promise<AuthorList> => {
+    let author_entries = [];
+    for (const reference of author_references) {
+        const entry = await getEntry(reference);
+        const { name, contact } = entry.data;
+        const link = `/blog/authors/${entry.id}/`;
+
+        author_entries.push({ link, name, contact });
+    }
+
+    const [first_author, ...middle_authors] = author_entries;
+    const last_author = middle_authors.pop();
+
+    if (!first_author) {
+        throw new Error("Expected at least one author");
+    }
+
+    return {
+        first: first_author,
+        middle: middle_authors,
+        last: last_author,
+    };
+};
+---

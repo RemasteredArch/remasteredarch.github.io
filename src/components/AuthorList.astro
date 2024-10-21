@@ -1,0 +1,23 @@
+---
+import type { AuthorList } from "./ResolveAuthors.astro";
+
+interface Props {
+    authors: AuthorList;
+}
+
+const { first, middle, last } = Astro.props.authors;
+---
+
+<a href={first.link}>{first.name}</a>{middle.length > 0 && <span>, </span>}{
+    middle.map((author) => (
+        <span>
+            <a href={author.link}>{author.name}</a>,{" "}
+        </span>
+    ))
+}{
+    last && (
+        <span>
+            and <a href={last.link}>{last.name}</a>
+        </span>
+    )
+}

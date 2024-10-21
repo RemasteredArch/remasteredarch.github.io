@@ -3,8 +3,9 @@ import Page from "../../layouts/Page.astro";
 import NavHeader from "../../components/NavHeader.astro";
 import IconListItem from "../../components/IconListItem.astro";
 import type { GetStaticPaths } from "astro";
-import { getCollection, getEntry } from "astro:content";
-import type { InferEntrySchema } from "astro:content";
+import { getCollection } from "astro:content";
+import { resolveAuthors } from "../../components/ResolveAuthors.astro";
+import AuthorList from "../../components/AuthorList.astro";
 
 /// Compare whether two dates occurred on the same day.
 ///
@@ -57,16 +58,6 @@ function formatDates(
     return strings;
 }
 
-interface Author extends InferEntrySchema<"authors"> {
-    link: string;
-}
-
-type AuthorList = {
-    first: Author;
-    middle: Author[];
-    last: Author | undefined;
-};
-
 export const getStaticPaths = (async () => {
     const blog = await getCollection("blog");
 
@@ -85,26 +76,7 @@ const { published: published_str, last_updated: last_updated_str } = formatDates
     last_updated,
 );
 
-let author_entries = [];
-for (const reference of author_references) {
-    const entry = await getEntry(reference);
-    const { name, contact } = entry.data;
-    const link = `/blog/authors/${entry.id}/`;
-
-    author_entries.push({ link, name, contact });
-}
-const [first_author, ...middle_authors] = author_entries;
-const last_author = middle_authors.pop();
-
-if (!first_author) {
-    throw new Error("Expected at least one author");
-}
-
-let authors: AuthorList = {
-    first: first_author,
-    middle: middle_authors,
-    last: last_author,
-};
+const authors = await resolveAuthors(author_references);
 ---
 
 <Page title={title} author={authors.first.name} description={description}>
@@ -116,7 +88,7 @@ let authors: AuthorList = {
     </NavHeader>
     <div class="metadata">
         <div class="description"><i>{description}</i></div>
-        <div class="author">Written by {authors.first.name}</div>
+        <div class="author">Written by <AuthorList authors={authors} /></div>
         <div class="published">
             Published
             {
