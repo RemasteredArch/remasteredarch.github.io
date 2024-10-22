@@ -6,7 +6,8 @@
         "fmt": "prettier --write .",
         "dev": "astro dev",
         "start": "astro dev",
-        "build": "astro check && astro build",
+        "check": "astro check && prettier --check .",
+        "build": "npm run check && astro build",
         "preview": "astro preview",
         "astro": "astro"
     },
