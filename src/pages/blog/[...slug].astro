@@ -32,12 +32,30 @@ function formatDates(
     published: Date,
     last_updated?: Date,
 ): { published: string; last_updated?: string } {
+    const locale = "en-US";
+
+    // Ex. `"Fri, October 18, 2024 at 5:53 PM PDT"`
+    const long_options: Intl.DateTimeFormatOptions = {
+        month: "long",
+        day: "numeric",
+        weekday: "short",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+        timeZoneName: "short",
+    };
+
+    // Ex. `"5:54 PM"`
+    const hour_options: Intl.DateTimeFormatOptions = {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+        timeZoneName: "short",
+    };
+
     let strings: { published: string; last_updated?: string } = {
-        // Ex. `"Friday, October 18, 2024 at 5:53:00 PM PDT"`
-        published: published.toLocaleString("en-US", {
-            dateStyle: "full",
-            timeStyle: "long",
-        }),
+        published: `on ${published.toLocaleString(locale, long_options)}`,
     };
 
     if (!last_updated) {
@@ -45,14 +63,9 @@ function formatDates(
     }
 
     if (sameDay(published, last_updated)) {
-        // Ex. `"5:54:00 PM"`
-        strings.last_updated = last_updated.toLocaleTimeString("en-US");
+        strings.last_updated = `at ${last_updated.toLocaleTimeString(locale, hour_options)}`;
     } else {
-        // Ex. `"Oct 20, 2024, 5:54:00 PM PDT"`
-        strings.last_updated = last_updated.toLocaleString("en-US", {
-            dateStyle: "medium",
-            timeStyle: "long",
-        });
+        strings.last_updated = `on ${last_updated.toLocaleString(locale, long_options)}`;
     }
 
     return strings;

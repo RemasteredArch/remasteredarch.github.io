@@ -6,13 +6,31 @@ interface Props {
 }
 
 const { slug } = Astro.props.blog_post;
-const { title, description, published, tags } = Astro.props.blog_post.data;
+const { title, description, published, last_updated, tags } = Astro.props.blog_post.data;
 ---
 
 <li class="card">
     <h3><a href={`/blog/${slug}`}>{title}</a></h3>
     <p>{description}</p>
-    <small>Published: {published.toLocaleDateString()}</small>
+    <small
+        >Published: {
+            published.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+            })
+        }</small
+    >
+    {
+        last_updated && (
+            <small>
+                Last updated:{" "}
+                {last_updated.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                })}
+            </small>
+        )
+    }
     <ul>
         {
             tags.map(({ id }) => (
