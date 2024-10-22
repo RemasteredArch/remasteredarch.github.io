@@ -1,0 +1,57 @@
+---
+import Page from "../../../layouts/Page.astro";
+import NavHeader from "../../../components/NavHeader.astro";
+import IconListItem from "../../../components/IconListItem.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import BigList from "../../../components/BigList.astro";
+
+export const getStaticPaths = (async () => {
+    const authors = await getCollection("authors");
+
+    return authors.map((author) => ({
+        params: { id: author.id },
+        props: { author },
+    }));
+}) satisfies GetStaticPaths;
+
+const { data } = Astro.props.author;
+const { name, contact } = data;
+
+const { website, email, socials } = contact || {};
+
+const title = `Author: ${name}`;
+---
+
+<Page title={title} author="RemasteredArch" description=`Author page for ${name}`>
+    <NavHeader title={title}>
+        <IconListItem>
+            <span slot="icon">&lt;-</span>
+            <a slot="text" href="/blog/">Blog</a>
+        </IconListItem>
+    </NavHeader>
+    <BigList>
+        {
+            website && (
+                <li>
+                    <a href={website}>Website</a>
+                </li>
+            )
+        }
+        {
+            email && (
+                <li>
+                    Email: <span class="font-mono">{email}</span>
+                </li>
+            )
+        }
+        {
+            socials &&
+                socials.map((social) => (
+                    <li>
+                        <a href={social}>{social}</a>
+                    </li>
+                ))
+        }
+    </BigList>
+</Page>
