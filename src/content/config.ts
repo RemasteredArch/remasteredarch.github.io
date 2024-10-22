@@ -32,7 +32,7 @@ const blog = defineCollection({
                 license_name: zod.string(),
                 license_link: zod.string(),
                 copyright_holder: zod.string(),
-                copyright_year: zod.string().or(zod.number()),
+                copyright_year: zod.string(),
             })
             .or(zod.string())
             .array()
