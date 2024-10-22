@@ -1,12 +1,15 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { getEntries } from "astro:content";
 
 interface Props {
     blog_post: CollectionEntry<"blog">;
 }
 
 const { slug } = Astro.props.blog_post;
-const { title, description, published, last_updated, tags } = Astro.props.blog_post.data;
+const { title, description, published, last_updated, tags: tag_references } = Astro.props.blog_post.data;
+
+const tags = await getEntries(tag_references);
 ---
 
 <li class="card">
@@ -31,15 +34,18 @@ const { title, description, published, last_updated, tags } = Astro.props.blog_p
             </small>
         )
     }
-    <ul>
-        {
-            tags.map(({ id }) => (
-                <li>
-                    <small>{id}</small>
-                </li>
-            ))
-        }
-    </ul>
+    <small>
+        Tags:
+        <ul>
+            {
+            tags.map(({ id, data }) => (
+                    <li>
+                        <a href=`/blog/tags/${id}/`>{data.name}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </small>
 </li>
 
 <style>
@@ -56,8 +62,8 @@ const { title, description, published, last_updated, tags } = Astro.props.blog_p
         max-width: 35ch;
     }
 
-    h2 {
-        align-self: center;
+    h3 a {
+        text-decoration: none;
     }
 
     ul {
@@ -72,9 +78,6 @@ const { title, description, published, last_updated, tags } = Astro.props.blog_p
         width: 100%;
         list-style: none;
         padding: 0;
-    }
-
-    a {
-        text-decoration: none;
+        margin-left: 2ch;
     }
 </style>

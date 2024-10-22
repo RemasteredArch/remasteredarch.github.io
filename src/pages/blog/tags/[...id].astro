@@ -1,0 +1,39 @@
+---
+import Page from "../../../layouts/Page.astro";
+import NavHeader from "../../../components/NavHeader.astro";
+import IconListItem from "../../../components/IconListItem.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import BlogPostPreview from "../../../components/BlogPostPreview.astro";
+import BlogPostPreviewList from "../../../components/BlogPostPreviewList.astro";
+
+export const getStaticPaths = (async () => {
+    const tags = await getCollection("tags");
+
+    return tags.map((tag) => ({
+        params: { id: tag.id },
+        props: { tag },
+    }));
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.props;
+const { name, description } = tag.data;
+
+const title = `Tag: ${name}`;
+
+const tagged = await getCollection("blog", ({ data }) => data.tags.some(({ id }) => id === tag.id));
+---
+
+<Page title={title} author="RemasteredArch" description=`Tag page for ${name}`>
+    <NavHeader title={title}>
+        <IconListItem>
+            <span slot="icon">&lt;-</span>
+            <a slot="text" href="/blog/">Blog</a>
+        </IconListItem>
+    </NavHeader>
+    <p>{description}</p>
+    <h3>Posts with this tag</h3>
+    <BlogPostPreviewList>
+        {tagged.map((post) => <BlogPostPreview blog_post={post} />)}
+    </BlogPostPreviewList>
+</Page>
