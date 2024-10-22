@@ -18,7 +18,6 @@
 
 import Page from "../../layouts/Page.astro";
 import NavHeader from "../../components/NavHeader.astro";
-import BlogPostPreview from "../../components/BlogPostPreview.astro";
 import BlogPostPreviewList from "../../components/BlogPostPreviewList.astro";
 
 import { getCollection } from "astro:content";
@@ -28,9 +27,7 @@ const blog = await getCollection("blog");
 <Page title="Blog" author="RemasteredArch" description="RemasteredArch's blogs">
     <NavHeader title="Blog" />
     <main>
-        <BlogPostPreviewList>
-            {blog.map((p) => <BlogPostPreview blog_post={p} />)}
-        </BlogPostPreviewList>
+        <BlogPostPreviewList posts={blog} />
     </main>
 </Page>
 

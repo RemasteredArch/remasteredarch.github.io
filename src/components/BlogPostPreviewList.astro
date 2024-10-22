@@ -1,9 +1,51 @@
 ---
+import type { CollectionEntry } from "astro:content";
+import BlogPostPreview from "./BlogPostPreview.astro";
 
+interface Props {
+    posts: CollectionEntry<"blog">[];
+}
+
+const { posts: post_list } = Astro.props;
+
+let posts: { year: number; posts: CollectionEntry<"blog">[] }[] = [];
+let next = post_list.pop();
+while (next) {
+    const year = next.data.published.getFullYear();
+    let inserted = false;
+
+    for (let list of posts) {
+        if (list.year !== year) continue;
+
+        list.posts.push(next);
+        inserted = true;
+        break;
+    }
+
+    if (!inserted) {
+        posts.push({
+            year,
+            posts: [next],
+        });
+    }
+
+    next = post_list.pop();
+}
 ---
 
 <ul>
-    <slot />
+    {
+        posts.map((year) => (
+            <li>
+                <h3>{year.year}</h3>
+                <ul class="posts">
+                    {year.posts.map((post) => (
+                        <BlogPostPreview blog_post={post} />
+                    ))}
+                </ul>
+            </li>
+        ))
+    }
 </ul>
 
 <style>
@@ -11,5 +53,14 @@
         padding: 0;
         width: 100%;
         list-style: none;
+    }
+
+    .posts {
+        border-left: 1px dashed;
+        padding-left: 3rem;
+    }
+
+    h3 {
+        margin-bottom: 1.5rem;
     }
 </style>
