@@ -7,7 +7,13 @@ interface Props {
 }
 
 const { slug } = Astro.props.blog_post;
-const { title, description, published, last_updated, tags: tag_references } = Astro.props.blog_post.data;
+const {
+    title,
+    description,
+    published,
+    last_updated,
+    tags: tag_references,
+} = Astro.props.blog_post.data;
 
 const tags = await getEntries(tag_references);
 ---
@@ -38,9 +44,9 @@ const tags = await getEntries(tag_references);
         Tags:
         <ul>
             {
-            tags.map(({ id, data }) => (
+                tags.map(({ id, data }) => (
                     <li>
-                        <a href=`/blog/tags/${id}/`>{data.name}</a>
+                        <a href={`/blog/tags/${id}/`}>{data.name}</a>
                     </li>
                 ))
             }
