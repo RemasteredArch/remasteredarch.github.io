@@ -1,15 +1,26 @@
 ---
+import Footer from "../components/Footer.astro";
+
 interface Props {
     title: string;
-    author: string;
+    author: string | string[];
     description: string;
 }
 
 const { title, author, description } = Astro.props;
 
+// Flatten type union from `string | string[]` into `string[]`.
+let authors: string[];
+if (typeof author === "string") {
+    // If only a single author is provided.
+    authors = [author];
+} else {
+    // If list of authors is provided.
+    authors = author;
+}
+
 import "../styles/index.css";
 import "../styles/fonts.css";
-import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -21,7 +32,7 @@ import Footer from "../components/Footer.astro";
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
 
-        <meta name="author" content={author} />
+        {authors.map((author) => <meta name="author" content={author} />)}
         <meta name="description" content={description} />
         <meta name="color-scheme" content="dark" />
     </head>

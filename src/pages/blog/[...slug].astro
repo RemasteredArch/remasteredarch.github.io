@@ -4,7 +4,7 @@ import NavHeader from "../../components/NavHeader.astro";
 import IconListItem from "../../components/IconListItem.astro";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import { resolveAuthors } from "../../components/ResolveAuthors.astro";
+import { authorListAsArray, resolveAuthors } from "../../components/ResolveAuthors.astro";
 import AuthorList from "../../components/AuthorList.astro";
 import LegalItem from "../../components/LegalItem.astro";
 import Footer from "../../components/Footer.astro";
@@ -101,7 +101,10 @@ const { published: published_str, last_updated: last_updated_str } = formatDates
 const authors = await resolveAuthors(author_references);
 ---
 
-<Page title={title} author={authors.first.name} description={description}>
+<Page
+    title={title}
+    author={authorListAsArray(authors).map((author) => author.name)}
+    description={description}>
     <NavHeader title={title}>
         <IconListItem>
             <span slot="icon">&lt;-</span>
