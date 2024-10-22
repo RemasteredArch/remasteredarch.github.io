@@ -6,6 +6,8 @@ import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import { resolveAuthors } from "../../components/ResolveAuthors.astro";
 import AuthorList from "../../components/AuthorList.astro";
+import LegalItem from "../../components/LegalItem.astro";
+import Footer from "../../components/Footer.astro";
 
 /// Compare whether two dates occurred on the same day.
 ///
@@ -82,7 +84,14 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
-const { title, authors: author_references, description, published, last_updated } = post.data;
+const {
+    title,
+    authors: author_references,
+    description,
+    published,
+    last_updated,
+    extra_legal_disclaimers,
+} = post.data;
 
 const { published: published_str, last_updated: last_updated_str } = formatDates(
     published,
@@ -115,4 +124,26 @@ const authors = await resolveAuthors(author_references);
     <main>
         <Content />
     </main>
+    {
+        extra_legal_disclaimers && (
+            <Footer slot="footer">
+                {extra_legal_disclaimers.map((disclaimer) => {
+                    if (typeof disclaimer === "string") {
+                        return <p>{disclaimer}</p>;
+                    }
+
+                    return (
+                        <LegalItem
+                            project_name={disclaimer.project_name}
+                            project_link={disclaimer.project_link}
+                            license_name={disclaimer.license_name}
+                            license_link={disclaimer.license_link}
+                            copyright_holder={disclaimer.copyright_holder}
+                            copyright_year={disclaimer.copyright_year}
+                        />
+                    );
+                })}
+            </Footer>
+        )
+    }
 </Page>

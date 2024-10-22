@@ -24,6 +24,19 @@ const blog = defineCollection({
         authors: reference("authors").array().min(1),
         published: zod.date(),
         last_updated: zod.date().optional(),
+        // Goes in the footer, either as a `LegalItem` or just an arbitrary string.
+        extra_legal_disclaimers: zod
+            .object({
+                project_name: zod.string(),
+                project_link: zod.string(),
+                license_name: zod.string(),
+                license_link: zod.string(),
+                copyright_holder: zod.string(),
+                copyright_year: zod.string().or(zod.number()),
+            })
+            .or(zod.string())
+            .array()
+            .optional(),
         tags: zod.array(reference("tags")),
     }),
 });
