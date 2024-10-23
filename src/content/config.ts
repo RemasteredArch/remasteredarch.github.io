@@ -16,14 +16,16 @@ const projects = defineCollection({
     }),
 });
 
+const isoDate = zod.string().datetime({ offset: true, precision: 0 });
+
 const blog = defineCollection({
     type: "content",
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
         authors: reference("authors").array().min(1),
-        published: zod.date(),
-        last_updated: zod.date().optional(),
+        published: isoDate,
+        last_updated: isoDate.optional(),
         // Goes in the footer, either as a `LegalItem` or just an arbitrary string.
         extra_legal_disclaimers: zod
             .object({

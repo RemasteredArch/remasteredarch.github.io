@@ -8,67 +8,24 @@ import { authorListAsArray, resolveAuthors } from "../../components/ResolveAutho
 import AuthorList from "../../components/AuthorList.astro";
 import LegalItem from "../../components/LegalItem.astro";
 import Footer from "../../components/Footer.astro";
-
-/// Compare whether two dates occurred on the same day.
-///
-/// Ex.
-/// - `2024-10-20T10:30Z` and `2024-10-20T15:22Z` will return `true`
-/// - `2024-10-20T10:30Z` and `2023-10-20T10:30Z` will return `false`
-function sameDay(published: Date, updated: Date): boolean {
-    // Clone values to avoid mutating the passed variables
-    const d1 = new Date(published.getTime());
-    const d2 = new Date(updated.getTime());
-
-    // Set the time of day equal
-    d1.setHours(0, 0, 0, 0);
-    d2.setHours(0, 0, 0, 0);
-
-    // Compare the date
-    return d1.getTime() === d2.getTime();
-}
+import { IsoDate } from "../../components/Time.astro";
 
 /// Format published date, and, if it exists, the last updated date as strings.
 ///
 /// If the two dates are one the same day, the last updated date is only a time.
 function formatDates(
-    published: Date,
-    last_updated?: Date,
+    published: IsoDate,
+    last_updated?: IsoDate,
 ): { published: string; last_updated?: string } {
-    const locale = "en-US";
-
-    // Ex. `"Fri, October 18, 2024 at 5:53 PM PDT"`
-    const long_options: Intl.DateTimeFormatOptions = {
-        month: "long",
-        day: "numeric",
-        weekday: "short",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-        timeZoneName: "short",
-    };
-
-    // Ex. `"5:54 PM"`
-    const hour_options: Intl.DateTimeFormatOptions = {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-        timeZoneName: "short",
-    };
-
     let strings: { published: string; last_updated?: string } = {
-        published: `on ${published.toLocaleString(locale, long_options)}`,
+        published: published.format("date"),
     };
 
     if (!last_updated) {
         return strings;
     }
 
-    if (sameDay(published, last_updated)) {
-        strings.last_updated = `at ${last_updated.toLocaleTimeString(locale, hour_options)}`;
-    } else {
-        strings.last_updated = `on ${last_updated.toLocaleString(locale, long_options)}`;
-    }
+    strings.last_updated = last_updated.format(last_updated.sameDay(published) ? "hour" : "date");
 
     return strings;
 }
@@ -93,9 +50,11 @@ const {
     extra_legal_disclaimers,
 } = post.data;
 
+new IsoDate("2024-10-22T11:20:00Z");
+
 const { published: published_str, last_updated: last_updated_str } = formatDates(
-    published,
-    last_updated,
+    new IsoDate(published),
+    last_updated ? new IsoDate(last_updated) : undefined,
 );
 
 const authors = await resolveAuthors(author_references);
