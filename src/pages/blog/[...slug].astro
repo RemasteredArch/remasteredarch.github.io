@@ -8,24 +8,26 @@ import { authorListAsArray, resolveAuthors } from "../../components/ResolveAutho
 import AuthorList from "../../components/AuthorList.astro";
 import LegalItem from "../../components/LegalItem.astro";
 import Footer from "../../components/Footer.astro";
-import { IsoDate } from "../../components/Time.astro";
+import { IsoDateTime } from "../../components/Time.astro";
 
 /// Format published date, and, if it exists, the last updated date as strings.
 ///
 /// If the two dates are one the same day, the last updated date is only a time.
 function formatDates(
-    published: IsoDate,
-    last_updated?: IsoDate,
+    published: IsoDateTime,
+    last_updated?: IsoDateTime,
 ): { published: string; last_updated?: string } {
     let strings: { published: string; last_updated?: string } = {
-        published: published.format("date"),
+        published: published.format("dateTime"),
     };
 
     if (!last_updated) {
         return strings;
     }
 
-    strings.last_updated = last_updated.format(last_updated.sameDay(published) ? "hour" : "date");
+    strings.last_updated = last_updated.format(
+        last_updated.sameDay(published) ? "hour" : "dateTime",
+    );
 
     return strings;
 }
@@ -50,11 +52,9 @@ const {
     extra_legal_disclaimers,
 } = post.data;
 
-new IsoDate("2024-10-22T11:20:00Z");
-
 const { published: published_str, last_updated: last_updated_str } = formatDates(
-    new IsoDate(published),
-    last_updated ? new IsoDate(last_updated) : undefined,
+    new IsoDateTime(published.iso, published.timeZone),
+    last_updated ? new IsoDateTime(last_updated.iso, last_updated.timeZone) : undefined,
 );
 
 const authors = await resolveAuthors(author_references);

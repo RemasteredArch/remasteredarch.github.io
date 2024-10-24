@@ -16,7 +16,15 @@ const projects = defineCollection({
     }),
 });
 
-const isoDate = zod.string().datetime({ offset: true, precision: 0 });
+const timeZonesUnchecked: readonly string[] = Intl.supportedValuesOf("timeZone");
+if (timeZonesUnchecked.length === 0) throw new Error("no time zones available");
+
+// @ts-ignore We just chekced that there is a value at index 0.
+const timeZones: readonly [string, ...string[]] = timeZonesUnchecked;
+export const dateTime = zod.object({
+    iso: zod.string().datetime({ offset: true, precision: 0 }),
+    timeZone: zod.enum(timeZones),
+});
 
 const blog = defineCollection({
     type: "content",
@@ -24,8 +32,8 @@ const blog = defineCollection({
         title: zod.string(),
         description: zod.string(),
         authors: reference("authors").array().min(1),
-        published: isoDate,
-        last_updated: isoDate.optional(),
+        published: dateTime,
+        last_updated: dateTime.optional(),
         // Goes in the footer, either as a `LegalItem` or just an arbitrary string.
         extra_legal_disclaimers: zod
             .object({

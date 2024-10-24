@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getEntries } from "astro:content";
+import { IsoDateTime } from "./Time.astro";
 
 interface Props {
     blog_post: CollectionEntry<"blog">;
@@ -10,36 +11,24 @@ const { slug } = Astro.props.blog_post;
 const {
     title,
     description,
-    published,
-    last_updated,
+    published: published_unparsed,
+    last_updated: last_updated_unparsed,
     tags: tag_references,
 } = Astro.props.blog_post.data;
 
 const tags = await getEntries(tag_references);
+
+const published = new IsoDateTime(published_unparsed.iso, published_unparsed.timeZone);
+let last_updated;
+if (last_updated_unparsed)
+    last_updated = new IsoDateTime(last_updated_unparsed.iso, last_updated_unparsed.timeZone);
 ---
 
 <li class="card">
     <h3><a href={`/blog/${slug}`}>{title}</a></h3>
     <p>{description}</p>
-    <small
-        >Published: {
-            published.toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-            })
-        }</small
-    >
-    {
-        last_updated && (
-            <small>
-                Last updated:{" "}
-                {last_updated.toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                })}
-            </small>
-        )
-    }
+    <small>Published: {published.format("date")}</small>
+    {last_updated && <small>Last updated: {last_updated.format("date")}</small>}
     <small>
         Tags:
         <ul>

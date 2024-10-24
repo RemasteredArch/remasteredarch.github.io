@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BlogPostPreview from "./BlogPostPreview.astro";
+import { IsoDateTime } from "./Time.astro";
 
 interface Props {
     posts: CollectionEntry<"blog">[];
@@ -11,7 +12,7 @@ const { posts: post_list } = Astro.props;
 let posts: { year: number; posts: CollectionEntry<"blog">[] }[] = [];
 let next = post_list.pop();
 while (next) {
-    const year = next.data.published.getFullYear();
+    const year = new IsoDateTime(next.data.published.iso, next.data.published.timeZone).getYear();
     let inserted = false;
 
     for (let list of posts) {
