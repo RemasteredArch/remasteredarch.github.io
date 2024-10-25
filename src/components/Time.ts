@@ -1,10 +1,9 @@
----
-import { dateTime } from "../content/config.ts";
+import { rawDateTime } from "../content/config.ts";
 
 export class IsoDateTime {
     /// The ISO date time string.
     /// `YYYY-MM-DDTHH:MM:SS([+-]HH:MM|Z)`
-    #string: string;
+    #iso: string;
     /// The named time zone.
     /// Any member of `Intl.supportedValuesOf('timeZone')`.
     #timeZone: string;
@@ -12,9 +11,9 @@ export class IsoDateTime {
     constructor(isoDateString: string, timeZone: string) {
         // Will error if incorrectly formatted.
         // Does this guarantee that there *will* be an offset or that there *will* be a time?
-        dateTime.parse({ iso: isoDateString, timeZone });
+        rawDateTime.parse({ iso: isoDateString, timeZone });
 
-        this.#string = isoDateString;
+        this.#iso = isoDateString;
         this.#timeZone = timeZone;
     }
 
@@ -22,20 +21,20 @@ export class IsoDateTime {
     /// Ex. `"2024-10-18T17:54:00-07:00"` => `"17:54:00-07:00"`.
     getTimeWithOffset(): string {
         // `!`: Constructor validates that it is present.
-        return this.#string.split("T", 2)[1]!;
+        return this.#iso.split("T", 2)[1]!;
     }
 
     /// The date portion of the datetime.
     /// Ex. `"2024-10-18T17:54:00-07:00"` => `"2024-10-18"`.
     getDate(): string {
         // `!`: Constructor validates that it is present.
-        return this.#string.split("T", 1)[0]!;
+        return this.#iso.split("T", 1)[0]!;
     }
 
     /// The year portion of the datetime.
     /// Ex. `"2024-10-18T17:54:00-07:00"` => `"2024"`.
     getYear(): number {
-        return parseInt(this.#string.slice(0, 4));
+        return parseInt(this.#iso.slice(0, 4));
     }
 
     /// Get the timezone offset portion of the datetime.
@@ -123,11 +122,20 @@ export class IsoDateTime {
     /// Returns a representation as a `Date` object.
     /// This does not include any time zone data.
     asDate(): Date {
-        return new Date(this.#string);
+        return new Date(this.#iso);
     }
 
     toString(): string {
-        return this.#string;
+        return this.#iso;
     }
 }
----
+
+/// Get the time zones available in the current runtime, as defined by
+/// `Intl.supportedValuesOf("timeZone")`.
+export const getRuntimeTimeZones = (): readonly [string, ...string[]] => {
+    const timeZonesUnchecked: readonly string[] = Intl.supportedValuesOf("timeZone");
+    if (timeZonesUnchecked.length === 0) throw new Error("no time zones available");
+
+    // @ts-ignore We just checked that there is a value at index 0.
+    return timeZonesUnchecked;
+};

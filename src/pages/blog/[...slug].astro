@@ -8,7 +8,7 @@ import { authorListAsArray, resolveAuthors } from "../../components/ResolveAutho
 import AuthorList from "../../components/AuthorList.astro";
 import LegalItem from "../../components/LegalItem.astro";
 import Footer from "../../components/Footer.astro";
-import { IsoDateTime } from "../../components/Time.astro";
+import { IsoDateTime } from "../../components/Time.ts";
 
 /// Format published date, and, if it exists, the last updated date as strings.
 ///
@@ -53,8 +53,8 @@ const {
 } = post.data;
 
 const { published: published_str, last_updated: last_updated_str } = formatDates(
-    new IsoDateTime(published.iso, published.timeZone),
-    last_updated ? new IsoDateTime(last_updated.iso, last_updated.timeZone) : undefined,
+    published,
+    last_updated,
 );
 
 const authors = await resolveAuthors(author_references);

@@ -1,4 +1,5 @@
 import { z as zod, reference, defineCollection } from "astro:content";
+import { getRuntimeTimeZones, IsoDateTime } from "../components/Time.ts";
 
 const projects = defineCollection({
     type: "data",
@@ -16,14 +17,13 @@ const projects = defineCollection({
     }),
 });
 
-const timeZonesUnchecked: readonly string[] = Intl.supportedValuesOf("timeZone");
-if (timeZonesUnchecked.length === 0) throw new Error("no time zones available");
-
-// @ts-ignore We just chekced that there is a value at index 0.
-const timeZones: readonly [string, ...string[]] = timeZonesUnchecked;
-export const dateTime = zod.object({
+export const rawDateTime = zod.object({
     iso: zod.string().datetime({ offset: true, precision: 0 }),
-    timeZone: zod.enum(timeZones),
+    timeZone: zod.enum(getRuntimeTimeZones()),
+});
+
+export const dateTime = rawDateTime.transform((raw) => {
+    return new IsoDateTime(raw.iso, raw.timeZone);
 });
 
 const blog = defineCollection({
