@@ -8,7 +8,7 @@ import { authorListAsArray, resolveAuthors } from "../../components/ResolveAutho
 import AuthorList from "../../components/AuthorList.astro";
 import LegalItem from "../../components/LegalItem.astro";
 import Footer from "../../components/Footer.astro";
-import { IsoDateTime } from "../../components/Time.ts";
+import { IsoDateTime, isoOrUndefined } from "../../components/Time.ts";
 
 /// Format published date, and, if it exists, the last updated date as strings.
 ///
@@ -43,18 +43,11 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
-const {
-    title,
-    authors: author_references,
-    description,
-    published,
-    last_updated,
-    extra_legal_disclaimers,
-} = post.data;
+const { title, authors: author_references, description, extra_legal_disclaimers } = post.data;
 
-const { published: published_str, last_updated: last_updated_str } = formatDates(
-    published,
-    last_updated,
+const { published, last_updated } = formatDates(
+    isoOrUndefined(post.data.published)!,
+    isoOrUndefined(post.data.last_updated),
 );
 
 const authors = await resolveAuthors(author_references);
@@ -77,8 +70,8 @@ const authors = await resolveAuthors(author_references);
             Published
             {
                 // Is this in the time zone of the dev or what's embedded into the date?
-                published_str
-            }{last_updated && <span>, last updated {last_updated_str}</span>}
+                published
+            }{last_updated && <span>, last updated {last_updated}</span>}
         </div>
         <!--<div class="tags">{tags}</div>-->
     </div>

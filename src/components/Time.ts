@@ -1,5 +1,24 @@
+import { z as zod } from "astro:content";
 import { rawDateTime } from "../content/config.ts";
 
+/// Construct a new `IsoDateTime` from a raw result from Zod.
+///
+/// If provided `undefined`, it will return `undefined`. Otherwise, it will return a value.
+/// It is safe to use `!` on this if you are certain you have valid, defined input.
+export const isoOrUndefined = (
+    maybeRawDateTime?: zod.infer<typeof rawDateTime>,
+): IsoDateTime | undefined => {
+    if (!maybeRawDateTime) {
+        return;
+    }
+
+    return new IsoDateTime(maybeRawDateTime.iso, maybeRawDateTime.timeZone);
+};
+
+/// Stores a datetime in a timezone-aware manner.
+///
+/// Internally, it stores an ISO-8601 string with a time and offset, and a timezone string.
+/// The time zone is any member of `Intl.supportedValuesOf('timeZone')`.
 export class IsoDateTime {
     /// The ISO date time string.
     /// `YYYY-MM-DDTHH:MM:SS([+-]HH:MM|Z)`
@@ -8,6 +27,7 @@ export class IsoDateTime {
     /// Any member of `Intl.supportedValuesOf('timeZone')`.
     #timeZone: string;
 
+    /// Panics if provided an invalid format.
     constructor(isoDateString: string, timeZone: string) {
         // Will error if incorrectly formatted.
         // Does this guarantee that there *will* be an offset or that there *will* be a time?

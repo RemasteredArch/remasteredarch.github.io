@@ -1,5 +1,5 @@
 import { z as zod, reference, defineCollection } from "astro:content";
-import { getRuntimeTimeZones, IsoDateTime } from "../components/Time.ts";
+import { getRuntimeTimeZones } from "../components/Time.ts";
 
 const projects = defineCollection({
     type: "data",
@@ -22,18 +22,14 @@ export const rawDateTime = zod.object({
     timeZone: zod.enum(getRuntimeTimeZones()),
 });
 
-export const dateTime = rawDateTime.transform((raw) => {
-    return new IsoDateTime(raw.iso, raw.timeZone);
-});
-
 const blog = defineCollection({
     type: "content",
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
         authors: reference("authors").array().min(1),
-        published: dateTime,
-        last_updated: dateTime.optional(),
+        published: rawDateTime,
+        last_updated: rawDateTime.optional(),
         // Goes in the footer, either as a `LegalItem` or just an arbitrary string.
         extra_legal_disclaimers: zod
             .object({

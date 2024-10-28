@@ -8,10 +8,11 @@ interface Props {
 
 const { posts: post_list } = Astro.props;
 
-let posts: { year: number; posts: CollectionEntry<"blog">[] }[] = [];
+let posts: { year: string; posts: CollectionEntry<"blog">[] }[] = [];
 let next = post_list.pop();
 while (next) {
-    const year = next.data.published.getYear();
+    // Get the year embedded in the datetime, in its timezone.
+    const year = next.data.published.iso.slice(0, 3);
     let inserted = false;
 
     for (let list of posts) {
