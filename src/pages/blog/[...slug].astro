@@ -45,9 +45,11 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 const { title, authors: author_references, description, extra_legal_disclaimers } = post.data;
 
-const { published, last_updated } = formatDates(
-    isoOrUndefined(post.data.published)!,
-    isoOrUndefined(post.data.last_updated),
+const published = isoOrUndefined(post.data.published)!;
+const last_updated = isoOrUndefined(post.data.last_updated);
+const { published: published_str, last_updated: last_updated_str } = formatDates(
+    published,
+    last_updated,
 );
 
 const authors = await resolveAuthors(author_references);
@@ -63,22 +65,23 @@ const authors = await resolveAuthors(author_references);
             <a slot="text" href="/blog/">Blog</a>
         </IconListItem>
     </NavHeader>
-    <div class="metadata">
-        <div class="description"><i>{description}</i></div>
-        <div class="author">Written by <AuthorList authors={authors} /></div>
-        <div class="published">
-            Published
-            {
-                // Is this in the time zone of the dev or what's embedded into the date?
-                published
-            }{last_updated && <span>, last updated {last_updated}</span>}
+    <article aria-label={title}>
+        <div class="metadata">
+            <div class="description"><i>{description}</i></div>
+            <div class="author">Written by <AuthorList authors={authors} /></div>
+            <div class="published">
+                Published <time datetime={published.toString()}>{published_str}</time>{
+                    last_updated_str && <span>, last updated</span>
+                }
+                {last_updated_str && <time>{last_updated_str}</time>}
+            </div>
+            <!--<div class="tags">{tags}</div>-->
         </div>
-        <!--<div class="tags">{tags}</div>-->
-    </div>
-    <hr />
-    <main>
-        <Content />
-    </main>
+        <hr />
+        <main>
+            <Content />
+        </main>
+    </article>
     {
         extra_legal_disclaimers && (
             <Footer slot="footer">

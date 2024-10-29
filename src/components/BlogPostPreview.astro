@@ -19,8 +19,18 @@ const last_updated = isoOrUndefined(data.last_updated);
 <li class="card">
     <h3><a href={`/blog/${slug}`}>{title}</a></h3>
     <p>{description}</p>
-    <small>Published: {published.format("date")}</small>
-    {last_updated && <small>Last updated: {last_updated.format("date")}</small>}
+    <small>
+        Published:
+        <time datetime={published.toString()}>{published.format("date")}</time>
+    </small>
+    {
+        last_updated && (
+            <small>
+                Last updated:
+                <time datetime={last_updated.toString()}>{last_updated.format("date")}</time>
+            </small>
+        )
+    }
     <small>
         Tags:
         <ul>
