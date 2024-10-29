@@ -12,7 +12,7 @@ let posts: { year: string; posts: CollectionEntry<"blog">[] }[] = [];
 let next = post_list.pop();
 while (next) {
     // Get the year embedded in the datetime, in its timezone.
-    const year = next.data.published.iso.slice(0, 3);
+    const year = next.data.published.iso.slice(0, 4);
     let inserted = false;
 
     for (let list of posts) {
