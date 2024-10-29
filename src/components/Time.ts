@@ -5,15 +5,15 @@ import { rawDateTime } from "../content/config.ts";
 ///
 /// If provided `undefined`, it will return `undefined`. Otherwise, it will return a value.
 /// It is safe to use `!` on this if you are certain you have valid, defined input.
-export const isoOrUndefined = (
+export function isoOrUndefined(
     maybeRawDateTime?: zod.infer<typeof rawDateTime>,
-): IsoDateTime | undefined => {
+): IsoDateTime | undefined {
     if (!maybeRawDateTime) {
         return;
     }
 
     return new IsoDateTime(maybeRawDateTime.iso, maybeRawDateTime.timeZone);
-};
+}
 
 /// Stores a datetime in a timezone-aware manner.
 ///
@@ -149,13 +149,3 @@ export class IsoDateTime {
         return this.#iso;
     }
 }
-
-/// Get the time zones available in the current runtime, as defined by
-/// `Intl.supportedValuesOf("timeZone")`.
-export const getRuntimeTimeZones = (): readonly [string, ...string[]] => {
-    const timeZonesUnchecked: readonly string[] = Intl.supportedValuesOf("timeZone");
-    if (timeZonesUnchecked.length === 0) throw new Error("no time zones available");
-
-    // @ts-ignore We just checked that there is a value at index 0.
-    return timeZonesUnchecked;
-};

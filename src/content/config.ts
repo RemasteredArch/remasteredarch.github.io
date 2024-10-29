@@ -1,5 +1,14 @@
 import { z as zod, reference, defineCollection } from "astro:content";
-import { getRuntimeTimeZones } from "../components/Time.ts";
+
+/// Get the time zones available in the current runtime, as defined by
+/// `Intl.supportedValuesOf("timeZone")`.
+function getRuntimeTimeZones(): readonly [string, ...string[]] {
+    const timeZonesUnchecked: readonly string[] = Intl.supportedValuesOf("timeZone");
+    if (timeZonesUnchecked.length === 0) throw new Error("no time zones available");
+
+    // @ts-ignore We just checked that there is a value at index 0.
+    return timeZonesUnchecked;
+}
 
 const projects = defineCollection({
     type: "data",
