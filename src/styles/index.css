@@ -120,6 +120,13 @@ a:focus {
     text-decoration-style: solid;
 }
 
+ol,
+li,
+ul,
+menu {
+    list-style-position: outside;
+}
+
 .font-big {
     /* Default 36px */
     font-size: 2.25rem;

@@ -1,5 +1,9 @@
 ---
-
+interface Props {
+    // Should use this to toggle `<menu>` instead of `<ul>`, but `<menu>` is currently bugged on
+    // Chromium browsers
+    menu?: boolean | undefined;
+}
 ---
 
 <ul class="font-big">
@@ -7,7 +11,8 @@
 </ul>
 
 <style>
-    ul {
+    ul,
+    menu {
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
