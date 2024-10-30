@@ -9,6 +9,7 @@ import AuthorList from "../../components/AuthorList.astro";
 import LegalItem from "../../components/LegalItem.astro";
 import Footer from "../../components/Footer.astro";
 import { IsoDateTime, isoOrUndefined } from "../../components/Time.ts";
+import { getEntries } from "astro:content";
 
 /// Format published date, and, if it exists, the last updated date as strings.
 ///
@@ -45,6 +46,8 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 const { title, authors: author_references, description, extra_legal_disclaimers } = post.data;
 
+const tags = await getEntries(post.data.tags);
+
 const published = isoOrUndefined(post.data.published)!;
 const last_updated = isoOrUndefined(post.data.last_updated);
 const { published: published_str, last_updated: last_updated_str } = formatDates(
@@ -68,14 +71,30 @@ const authors = await resolveAuthors(author_references);
     <article aria-label={title}>
         <div class="metadata">
             <div class="description"><i>{description}</i></div>
-            <div class="author">Written by <AuthorList authors={authors} /></div>
-            <div class="published">
-                Published <time datetime={published.toString()}>{published_str}</time>{
-                    last_updated_str && <span>, last updated</span>
+            <div class="authors">Written by <AuthorList authors={authors} /></div>
+            <small class="dates">
+                Published <time datetime={published.toString()}>{published_str}</time>
+                <br />
+                {
+                    last_updated_str && (
+                        <span>
+                            Last updated <time>{last_updated_str}</time>
+                        </span>
+                    )
                 }
-                {last_updated_str && <time>{last_updated_str}</time>}
-            </div>
-            <!--<div class="tags">{tags}</div>-->
+            </small>
+            <small class="tags">
+                Tags:
+                <ul>
+                    {
+                        tags.map(({ id, data }) => (
+                            <li>
+                                <a href={`/blog/tags/${id}/`}>{data.name}</a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </small>
         </div>
         <hr />
         <main>
@@ -114,12 +133,49 @@ const authors = await resolveAuthors(author_references);
         justify-content: start;
         gap: inherit;
         width: 100%;
+        --text-width: 65ch;
+    }
+
+    .metadata {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        gap: 1rem;
+
+        align-self: center;
+        width: 100%;
+        max-width: var(--text-width);
+    }
+
+    .dates,
+    .authors,
+    .tags {
+        color: var(--color-overlay-1);
+
+        --color-link: var(--color-overlay-1);
+        --color-link-visited: var(--color-link);
+    }
+
+    .tags ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+        align-content: start;
+        justify-content: start;
+        gap: 1rem;
+
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin-left: 2ch;
     }
 
     main {
         gap: 2rem;
         width: 100%;
-        --text-width: 65ch;
     }
 </style>
 
