@@ -23,6 +23,8 @@
      * MIT license
      * <https://catppuccin.com/> */
     --color-base: #1e1e2e;
+    --color-mantle: #181825;
+    --color-crust: #11111b;
     --color-text: #cdd6f4;
     --color-subtext-1: #bac2de;
     --color-overlay-1: #7f849c;
@@ -134,6 +136,10 @@ small {
     /* Default 16px */
     font-size: 1rem;
     font-weight: 400;
+}
+
+code {
+    font-family: "IBM Plex Mono", monospace;
 }
 
 h1 {

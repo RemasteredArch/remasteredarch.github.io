@@ -82,10 +82,10 @@ const authors = await resolveAuthors(author_references);
             <Content />
         </main>
     </article>
-    {
-        extra_legal_disclaimers && (
-            <Footer slot="footer">
-                {extra_legal_disclaimers.map((disclaimer) => {
+    <Footer slot="footer">
+        {
+            extra_legal_disclaimers &&
+                extra_legal_disclaimers.map((disclaimer) => {
                     if (typeof disclaimer === "string") {
                         return <p>{disclaimer}</p>;
                     }
@@ -100,8 +100,53 @@ const authors = await resolveAuthors(author_references);
                             copyright_year={disclaimer.copyright_year}
                         />
                     );
-                })}
-            </Footer>
-        )
-    }
+                })
+        }
+    </Footer>
 </Page>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        gap: inherit;
+        width: 100%;
+    }
+
+    main {
+        gap: 2rem;
+        width: 100%;
+        --text-width: 65ch;
+    }
+</style>
+
+<style is:global>
+    main {
+        .astro-code {
+            min-width: min(var(--text-width), 100%);
+            max-width: 100%;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        * {
+            align-self: center;
+        }
+
+        :not(.astro-code) {
+            width: var(--text-width);
+            max-width: 100%;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+        }
+    }
+</style>
