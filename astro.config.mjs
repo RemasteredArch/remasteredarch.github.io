@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import { createCssVariablesTheme } from "shiki/core";
 import { bundledThemes } from "shiki";
 
 const catppuccin_mocha_with_darker_bg = Object.assign(
