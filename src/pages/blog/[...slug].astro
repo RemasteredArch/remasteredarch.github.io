@@ -196,6 +196,15 @@ const authors = await resolveAuthors(author_references);
             width: var(--text-width);
             max-width: 100%;
         }
+
+        p {
+            text-indent: 2ch;
+        }
+
+        li:not(:first-of-type) {
+            margin-top: 0.75rem;
+        }
+
         h1,
         h2,
         h3,
