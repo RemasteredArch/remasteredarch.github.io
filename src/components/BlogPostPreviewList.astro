@@ -8,7 +8,14 @@ interface Props {
 
 const { posts: post_list } = Astro.props;
 
+// Sort by date, with the most recent post first.
+post_list.sort(
+    (a, b) => new Date(a.data.published.iso).getTime() - new Date(b.data.published.iso).getTime(),
+);
+
+// Chunk the posts by year.
 let posts: { year: string; posts: CollectionEntry<"blog">[] }[] = [];
+
 let next = post_list.pop();
 while (next) {
     // Get the year embedded in the datetime, in its timezone.
