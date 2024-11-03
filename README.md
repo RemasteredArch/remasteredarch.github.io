@@ -7,7 +7,7 @@ I need to work on improving blog metadata
 --- tag linking, add supprt for multiple blog authors, and show metadata on blog pages ---
 and add a CI/CD script.
 
-![The home page of my site](./docs/HomePage.png "Home Page")
+![The home page of my site](./src/images/v4_home_page.png "Home Page")
 
 ## License
 
