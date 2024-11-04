@@ -15,7 +15,7 @@ Once I had learned more, I came back and rewrote it, now with some neat styling.
 By the end of 2021, I decided would learn some _real_ programming with this JavaScript thing.
 In January of 2022, I finished and uploaded my last rewrite,
 incorporating a few bits of JavaScript
-(some of which was [truly horrifying](https://github.com/RemasteredArch/remasteredarch.github.io/blob/0f5287cc882b41e5a9d17e360376f4b839f47b90/pages/pascGen.html#L105-L138))
+(some of which was [truly horrifying](https://github.com/RemasteredArch/remasteredarch.github.io/blob/0f5287c/pages/pascGen.html#L105-L138))
 and even more advanced HTML and CSS.
 
 I don't think that I had any idea what I started back then.
@@ -70,6 +70,49 @@ then implement the home page with plain HTML and CSS,
 and then finally pick a generator and transition over to it.
 
 ## Design
+
+I did the design work with [Penpot](https://penpot.app).
+I remembered having mixed feelings in the past,
+but I quite enjoyed it this go around.
+
+I knew I wanted a few things:
+
+-   The header "Hey, I'm Arch. 👋"
+-   A prominent link to my GitHub account
+-   A basic summary pertaining to my interests, particularly technical
+-   My pronouns
+-   A pride flag
+-   A proper legal notice
+-   A list of my projects
+-   A list of my blog posts
+
+The last two didn't work out
+--- I wasn't going to be able to have two arbitrarily long lists on a mobile device.
+I just pushed them off onto their own pages, and I think it turned out better for it.
+
+The only single source of inspiration I can point to, other than my previous website,
+was <https://www.fantail.dev/>.
+The site has since changed and the Internet Archive doesn't have a capture with CSS,
+but here's the rough layout to my memory:
+
+```text
+Name            - Contact
+Blurb           - Contact
+
+Project  Project  Project
+Project  Project  Project
+
+     Legal Footer
+```
+
+The only inspiration I took can be seen in the header,
+with the big heading text on the left and the list of contacts on the right.
+
+Here's the final draft I created with Penpot before I got to implementation.
+It was pretty close to how it ultimately came out,
+other than adding link styling, a different icon for my GitHub account, and a brighter color for the subtle text.
+
+![A screenshot of a website home page in an artboard of a graphic design program](../../images/v4_home_page_design_draft.png)
 
 ## The First Home Page
 
