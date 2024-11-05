@@ -177,9 +177,92 @@ $ npm run dev
 From this point,
 I tweaked the configurations,
 moved all my previous work into the file layout of an idiomatic Astro project,
+split the home page into various components,
 and I was on my way.
 
 ## Expanding the Site
+
+First up was the [projects](/projects/) page.
+After a quick stop in Penpot and a little bit of hacking, it was done.
+The end result, a simple grid of cards, isn't my favorite, but it's good enough.
+It will get a touch up when [masonry layout](https://www.w3.org/TR/css-grid-3/) lands in CSS.
+The page is generated using Astro's [Content Collections](https://docs.astro.build/en/guides/content-collections/),
+where each one is its own YAML file defined by a [Zod](https://zod.dev/) schema, like so:
+
+<!-- These should really be using the `IsoDateTime` -->
+
+```yaml
+title: nvim-config
+description: My personal neovim config.
+first_commit: 2024-02-02T09:38:24-08:00
+links:
+    - { type: git, url: "https://github.com/RemasteredArch/nvim-config" }
+```
+
+Up next was blog posts.
+Specifically, [the list of them](/blog/).
+This takes a timeline format that chunks by year.
+Like the projects page, this is generated from a Content Collection.
+Each blog post, like this one, is a markdown file with a YAML front matter:
+
+<!-- Update before release -->
+
+```md
+---
+title: Rewriting My Website, Again
+description: I rewrote my website again. What changed? Lots.
+authors:
+    - RemasteredArch
+published: { iso: "0001-01-01T00:00:00-07:00", timeZone: "America/Los_Angeles" }
+tags: []
+---
+```
+
+The `published` (and `last_updated`, not depicted) fields are a hand-rolled time type that I use for displaying times in their appropriate time zone.
+Implementation was rocky to say the least, but I eventually settled on the current form.
+What I _wish_ could be done was working off the offset in the ISO date time string,
+but [offsets aren't timezones](https://stackoverflow.com/tags/timezone/info).
+`Date` still does most of the heavy lifting,
+but I am very excited for the [Temporal proposal](https://github.com/tc39/proposal-temporal) to land in ECMAScript
+so that I don't have to do this.
+These are annoying, sure, but they do what I need to:
+
+-   Date times on different days are displayed separately:
+
+```yaml
+# "Published on Tue, October 29, 2024 at 12:54 PM PDT"
+published: { iso: "2024-10-29T12:54:33-07:00", timeZone: "America/Los_Angeles" }
+# "Last updated on Wed, October 30, 2024 at 5:55 PM PDT"
+last_updated:
+    { iso: "2024-10-20T17:55:23-07:00", timeZone: "America/Los_Angeles" }
+```
+
+-   Date times on the same day are displayed separately,
+    and the embedded time zone is accounted for:
+
+```yaml
+# "Published on Sun, October 20, 2024 at 12:54 PM PDT"
+published: { iso: "2024-10-20T12:54:33-07:00", timeZone: "America/Los_Angeles" }
+# "Last updated at 5:55 PM EDT"
+last_updated: { iso: "2024-10-20T17:55:23-04:00", timeZone: "America/New_York" }
+```
+
+The `authors` and `tags` lists are [references](https://docs.astro.build/en/guides/content-collections/#defining-collection-references)
+to items from the `authors` and `tags` content collections:
+
+```yaml
+name: RemasteredArch
+contact:
+    email: RemasteredArch (AT) gmail.com
+    website: /
+    socials:
+        - https://github.com/RemasteredArch
+```
+
+Each author then has their own generated page.
+[Here's mine](/blog/authors/RemasteredArch/).
+
+<!-- Include a similar tag example -->
 
 ## Release
 
