@@ -116,7 +116,68 @@ other than adding link styling, a different icon for my GitHub account, and a br
 
 ## The First Home Page
 
+Next step was implementing the new home page in plain HTML and CSS.
+Because Penpot is oriented around CSS,
+translating the design was fairly easy.
+From that point, a few more things happened:
+
+-   Added styling for links
+-   Changed the icon for my GitHub account to the [Git logomark](https://git-scm.com/downloads/logos)
+    instead of a cat or octopus emoji
+-   Translated units from `px` to relative units like `rem` and `ch`
+
+I had decided to write my first implementation in plain HTML and CSS
+because I wasn't sure what framework I wanted,
+and I didn't want to have to juggle learning it and getting the home page done.
+But now, it was time to choose.
+
+## Picking a Framework
+
+Ultimately, I chose Astro.
+I had decided I wanted more than a front page in HTML,
+I decided that an HTML-oriented tool would be my best bet.
+
+The first thing I reached for at this point was an HTML template engine,
+because I thought that the simplicity was what I needed.
+Looking around, the only one I saw that fit my needs was
+Parcel and its integration with PostHTML.
+But after a rocky first experience with the toolchain,
+I decided I would give Astro a shot.
+
+Next.js had also been on my mind,
+but it seems to be focused mostly on server-side rendering, particularly with React.
+Astro, on the other hand, is built for compile-time static site generation.
+
+Immediately, I was impressed by Astro.
+[Its documentation](https://docs.astro.build/)
+is thorough, beginner-friendly, and aesthetically pleasing.
+Coming from Rust, I appreciated that Astro has an idiomatic
+[project structure](https://docs.astro.build/en/basics/project-structure/)
+and [editor setup](https://docs.astro.build/en/editor-setup/).
+The standard [language service](https://github.com/withastro/language-tools)
+(and its [Prettier integration](https://docs.astro.build/en/editor-setup/#prettier)),
+in particular, is wonderful.
+As a Neovim user,
+Astro was the first time it felt like I was having a first-class experience
+in something other than Rust.
+
 ## Transitioning to Astro
+
+Getting started with Astro is easy:
+
+```sh
+$ # Step through the instructions
+$ # and get a basic site set up
+$ npm create astro@latest
+$ # Launch a development server and
+$ # open the link in your browser
+$ npm run dev
+```
+
+From this point,
+I tweaked the configurations,
+moved all my previous work into the file layout of an idiomatic Astro project,
+and I was on my way.
 
 ## Expanding the Site
 
