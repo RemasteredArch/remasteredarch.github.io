@@ -188,6 +188,31 @@ const authors = await resolveAuthors(author_references);
             border-radius: 1rem;
         }
 
+        :not(.astro-code) code {
+            background-color: var(--color-mantle);
+            padding: 0.25em;
+            border-radius: 0.25em;
+            color: var(--color-subtext-1);
+        }
+
+        /* This is *such* a hack. Does it have to be? */
+        :not(.astro-code) a {
+            & code {
+                color: var(--color-link);
+                text-decoration-style: dotted;
+            }
+
+            &:visited code {
+                color: var(--color-link-visited);
+            }
+
+            &:hover code,
+            &:focus code {
+                color: var(--color-link-hover);
+                text-decoration-style: solid;
+            }
+        }
+
         * {
             align-self: center;
         }
