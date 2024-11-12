@@ -1,14 +1,14 @@
 ---
-import Page from "../../layouts/Page.astro";
-import NavHeader from "../../components/NavHeader.astro";
-import IconListItem from "../../components/IconListItem.astro";
+import Page from "~/layouts/Page.astro";
+import NavHeader from "~/components/NavHeader.astro";
+import IconListItem from "~/components/IconListItem.astro";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import { authorListAsArray, resolveAuthors } from "../../components/ResolveAuthors.astro";
-import AuthorList from "../../components/AuthorList.astro";
-import LegalItem from "../../components/LegalItem.astro";
-import Footer from "../../components/Footer.astro";
-import { IsoDateTime, isoOrUndefined } from "../../components/Time.ts";
+import { authorListAsArray, resolveAuthors } from "~/components/ResolveAuthors.astro";
+import AuthorList from "~/components/AuthorList.astro";
+import LegalItem from "~/components/LegalItem.astro";
+import Footer from "~/components/Footer.astro";
+import { IsoDateTime, isoOrUndefined } from "~/components/Time.ts";
 import { getEntries } from "astro:content";
 
 /// Format published date, and, if it exists, the last updated date as strings.

@@ -112,7 +112,7 @@ Here's the final draft I created with Penpot before I got to implementation.
 It was pretty close to how it ultimately came out,
 other than adding link styling, a different icon for my GitHub account, and a brighter color for the subtle text.
 
-![A screenshot of a website home page in an artboard of a graphic design program](../../images/v4_home_page_design_draft.png)
+![A screenshot of a website home page in an artboard of a graphic design program](~/images/v4_home_page_design_draft.png)
 
 ## The First Home Page
 

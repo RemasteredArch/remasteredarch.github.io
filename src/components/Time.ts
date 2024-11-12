@@ -1,5 +1,5 @@
 import { z as zod } from "astro:content";
-import { rawDateTime } from "../content/config.ts";
+import { rawDateTime } from "~/content/config.ts";
 
 /// Construct a new `IsoDateTime` from a raw result from Zod.
 ///

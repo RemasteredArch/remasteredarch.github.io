@@ -1,5 +1,5 @@
 ---
-import Footer from "../components/Footer.astro";
+import Footer from "~/components/Footer.astro";
 
 interface Props {
     title: string;
@@ -19,8 +19,8 @@ if (typeof author === "string") {
     authors = author;
 }
 
-import "../styles/index.css";
-import "../styles/fonts.css";
+import "~/styles/index.css";
+import "~/styles/fonts.css";
 ---
 
 <!doctype html>
