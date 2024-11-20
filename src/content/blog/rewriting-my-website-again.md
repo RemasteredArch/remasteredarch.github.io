@@ -149,7 +149,7 @@ but it seems to be focused mostly on server-side rendering, particularly with Re
 Astro, on the other hand, is built for compile-time static site generation.
 
 Immediately, I was impressed by Astro.
-[Its documentation](https://docs.astro.build/)
+Its [documentation](https://docs.astro.build/)
 is thorough, beginner-friendly, and aesthetically pleasing.
 Coming from Rust, I appreciated that Astro has an idiomatic
 [project structure](https://docs.astro.build/en/basics/project-structure/)
@@ -184,8 +184,8 @@ and I was on my way.
 
 First up was the [projects](/projects/) page.
 After a quick stop in Penpot and a little bit of hacking, it was done.
-The end result, a simple grid of cards, isn't my favorite, but it's good enough.
-It will get a touch up when [masonry layout](https://www.w3.org/TR/css-grid-3/) lands in CSS.
+The end result is a simple grid of cards.
+It's not my favorite, but it'll do in while we wait for [masonry layout](https://www.w3.org/TR/css-grid-3/) to land in CSS.
 The page is generated using Astro's [Content Collections](https://docs.astro.build/en/guides/content-collections/),
 where each one is its own YAML file defined by a [Zod](https://zod.dev/) schema, like so:
 
@@ -218,7 +218,8 @@ tags: []
 ---
 ```
 
-The `published` (and `last_updated`, not depicted) fields are a hand-rolled time type that I use for displaying times in their appropriate time zone.
+The `published` (and `last_updated`, not depicted) fields
+are a hand-rolled time type that I use for displaying times in their appropriate time zone.
 Implementation was rocky to say the least, but I eventually settled on the current form.
 What I _wish_ could be done was working off the offset in the ISO date time string,
 but [offsets aren't timezones](https://stackoverflow.com/tags/timezone/info).
