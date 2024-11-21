@@ -263,7 +263,30 @@ contact:
 Each author then has their own generated page.
 [Here's mine](/blog/authors/RemasteredArch/).
 
+So too do tags.
+[Here's]() the page for the <!-- TODO --> tag.
+
 <!-- Include a similar tag example -->
+
+Next up was the CI/CD pipeline with GitHub Actions.
+Because this site is built on GitHub pages, it's not all that difficult.
+In fact, there's a pre-built Astro action availabe,
+but I decided to write [my own](https://github.com/RemasteredArch/remasteredarch.github.io/blob/8efcbe1/.github/workflows/pages.yaml)
+for the sake of learning.
+
+<!-- If I make this break a line break instead of a paragraph break,
+     the second chunk doesn't get proper indentation. -->
+
+Though reading documentation, inspecting source code, and general trial-and-error with [Act](https://github.com/nektos/act),
+I did eventually come out with a successful pipeline.
+Well, we'll have to see, but I'm pretty sure it's good.
+At grand total of 62 lines and only seven steps, it's not terribly complicated.
+Currently, it's set to trigger on any push to a hard-coded branch,
+but I'll probably set it to trigger on `page_build`
+(a push to the branch that publishes to GitHub Pages)
+after release.
+
+## Uh Oh, it Doesn't Work on Mobile?
 
 ## Release
 
