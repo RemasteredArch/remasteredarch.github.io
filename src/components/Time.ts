@@ -89,8 +89,9 @@ export class IsoDateTime {
     /// Format a datetime as either:
     /// - A date and time: `"on October 18"`
     /// - A date: `"on Fri, October 18, 2024 at 5:53 PM PDT"`
+    /// - An American-style `mm/dd/yyyy` numeric date: `"on 4/18/2024"`
     /// - Just the hours: `"at 5:53 PM PDT"`
-    format(type: "dateTime" | "date" | "hour"): string {
+    format(type: "dateTime" | "date" | "hour" | "us_numeric"): string {
         const locale = "en-US";
 
         // Ex. `"Fri, October 18, 2024 at 5:53 PM PDT"`
@@ -121,6 +122,12 @@ export class IsoDateTime {
             timeZone: this.#timeZone,
         };
 
+        // Ex. `"4/18/2024"`
+        const us_numeric_options: Intl.DateTimeFormatOptions = {
+            //
+        };
+        throw new Error("TODO: implement `us_numeric`");
+
         switch (type) {
             case "date":
                 return `on ${this.asDate().toLocaleString(locale, short_date_options)}`;
@@ -128,6 +135,8 @@ export class IsoDateTime {
                 return `on ${this.asDate().toLocaleString(locale, long_options)}`;
             case "hour":
                 return `at ${this.asDate().toLocaleString(locale, hour_options)}`;
+            case "us_numeric":
+                return `on ${this.asDate().toLocaleString(locale, us_numeric_options)}`;
         }
     }
 

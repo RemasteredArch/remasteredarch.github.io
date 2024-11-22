@@ -10,12 +10,17 @@ function getRuntimeTimeZones(): readonly [string, ...string[]] {
     return timeZonesUnchecked;
 }
 
+export const rawDateTime = zod.object({
+    iso: zod.string().datetime({ offset: true, precision: 0 }),
+    timeZone: zod.enum(getRuntimeTimeZones()),
+});
+
 const projects = defineCollection({
     type: "data",
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
-        first_commit: zod.date(),
+        first_commit: rawDateTime,
         links: zod.array(
             zod.object({
                 type: zod.enum(["git", "blog post", "website"]),
@@ -24,11 +29,6 @@ const projects = defineCollection({
         ),
         blog_posts: zod.array(reference("blog")).optional(),
     }),
-});
-
-export const rawDateTime = zod.object({
-    iso: zod.string().datetime({ offset: true, precision: 0 }),
-    timeZone: zod.enum(getRuntimeTimeZones()),
 });
 
 const blog = defineCollection({

@@ -3,12 +3,20 @@ import type { CollectionEntry } from "astro:content";
 import BlogIcon from "./icons/BlogIcon.astro";
 import GitIcon from "./icons/GitIcon.astro";
 import WebsiteIcon from "./icons/WebsiteIcon.astro";
+import { IsoDateTime } from "./Time";
 
 interface Props {
     project: CollectionEntry<"projects">;
 }
 
-const { title, description, first_commit, links: raw_links } = Astro.props.project.data;
+const {
+    title,
+    description,
+    first_commit: raw_first_commit,
+    links: raw_links,
+} = Astro.props.project.data;
+
+const first_commit = new IsoDateTime(raw_first_commit.iso, raw_first_commit.timeZone);
 
 const icon_map = {
     "blog post": BlogIcon,
@@ -24,7 +32,8 @@ const links = raw_links.map(({ type, url }) => {
 <li class="card">
     <h4>{title}</h4>
     <p>{description}</p>
-    <small>First commit: {first_commit.toLocaleDateString()}</small>
+    {/* E.g., `"First commit on 4/18/2024"` */}
+    <small>First commit {first_commit.format("us_numeric")}</small>
     <ul>
         {
             links.map(({ Icon, url }) => (
