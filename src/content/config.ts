@@ -1,7 +1,14 @@
 import { z as zod, reference, defineCollection } from "astro:content";
 
-/// Get the time zones available in the current runtime, as defined by
-/// `Intl.supportedValuesOf("timeZone")`.
+/**
+ * Get the time zones available in the current runtime.
+ *
+ * @remarks
+ *
+ * As defined by {@link Intl.supportedValuesOf | `Intl.supportedValuesOf("timeZone")`}.
+ *
+ * @returns An array (of a length >=1) of time zones for use in {@link Intl.DateTimeFormatOptions}.
+ */
 function getRuntimeTimeZones(): readonly [string, ...string[]] {
     const timeZonesUnchecked: readonly string[] = Intl.supportedValuesOf("timeZone");
     if (timeZonesUnchecked.length === 0) throw new Error("no time zones available");

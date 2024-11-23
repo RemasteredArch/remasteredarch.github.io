@@ -11,9 +11,15 @@ import Footer from "~/components/Footer.astro";
 import { IsoDateTime, isoOrUndefined } from "~/components/Time.ts";
 import { getEntries } from "astro:content";
 
-/// Format published date, and, if it exists, the last updated date as strings.
-///
-/// If the two dates are one the same day, the last updated date is only a time.
+/**
+ * Format the published date, and, if it exists, the last updated date as strings.
+ *
+ * If the two dates are one the same day, the last updated date is only a time.
+ *
+ * @param published - The date the blog post was first published on.
+ * @param last_updated - The most recent date the blog post was updated on.
+ * @returns The dates formatted as they should be presented in the post's front matter.
+ */
 function formatDates(
     published: IsoDateTime,
     last_updated?: IsoDateTime,

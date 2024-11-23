@@ -42,7 +42,12 @@ export const resolveAuthors = async (author_references: AuthorReferences): Promi
     };
 };
 
-/// Flatten a `AuthorList` into an array.
+/**
+ * Flatten an {@link AuthorList} into an array.
+ *
+ * @param authors - An {@link AuthorList} to be flattened.
+ * @returns An array of {@link Author}s.
+ */
 export const authorListAsArray = (authors: AuthorList): Author[] => {
     const { first, middle, last } = authors;
 
