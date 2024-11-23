@@ -124,9 +124,11 @@ export class IsoDateTime {
 
         // Ex. `"4/18/2024"`
         const us_numeric_options: Intl.DateTimeFormatOptions = {
-            //
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            timeZone: this.#timeZone,
         };
-        throw new Error("TODO: implement `us_numeric`");
 
         switch (type) {
             case "date":
