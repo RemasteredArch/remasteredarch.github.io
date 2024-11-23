@@ -162,8 +162,8 @@ export class IsoDateTime {
      * @remarks
      *
      * Format a date time as either:
-     * - A date and time: `"on October 18"`
-     * - A date: `"on Fri, October 18, 2024 at 5:53 PM PDT"`
+     * - A date and time: `"on Fri, October 18, 2024 at 5:53 PM PDT"`
+     * - A date: `"on October 18"`
      * - An American-style `mm/dd/yyyy` numeric date: `"on 4/18/2024"`
      * - Just the hours: `"at 5:53 PM PDT"`
      *
@@ -172,10 +172,12 @@ export class IsoDateTime {
      * @param type - The style of formatting to use.
      * @returns The formatted date time.
      */
-    format(type: "dateTime" | "date" | "hour" | "us_numeric"): string {
-        const locale = "en-US";
+    format(type: "dateTime" | "date" | "hour" | "usNumeric"): string {
+        const fmt = (options: Intl.DateTimeFormatOptions, preposition: string = "on"): string => {
+            return `${preposition} ${this.toLocaleString("en-US", options)}`;
+        };
 
-        // Ex. `"Fri, October 18, 2024 at 5:53 PM PDT"`
+        /** Ex. `"Fri, October 18, 2024 at 5:53 PM PDT"` */
         const long_options: Intl.DateTimeFormatOptions = {
             month: "long",
             day: "numeric",
@@ -185,41 +187,38 @@ export class IsoDateTime {
             minute: "numeric",
             hour12: true,
             timeZoneName: "short",
-            timeZone: this.#timeZone,
         };
 
+        /** Ex. `"October 18"` */
         const short_date_options: Intl.DateTimeFormatOptions = {
             month: "long",
             day: "numeric",
-            timeZone: this.#timeZone,
         };
 
-        // Ex. `"5:54 PM"`
+        /** Ex. `"5:54 PM"` */
         const hour_options: Intl.DateTimeFormatOptions = {
             hour: "numeric",
             minute: "numeric",
             hour12: true,
             timeZoneName: "short",
-            timeZone: this.#timeZone,
         };
 
-        // Ex. `"4/18/2024"`
+        /** Ex. `"4/18/2024"` */
         const us_numeric_options: Intl.DateTimeFormatOptions = {
             year: "numeric",
             month: "numeric",
             day: "numeric",
-            timeZone: this.#timeZone,
         };
 
         switch (type) {
-            case "date":
-                return `on ${this.asDate().toLocaleString(locale, short_date_options)}`;
             case "dateTime":
-                return `on ${this.asDate().toLocaleString(locale, long_options)}`;
+                return fmt(long_options);
+            case "date":
+                return fmt(short_date_options);
             case "hour":
-                return `at ${this.asDate().toLocaleString(locale, hour_options)}`;
-            case "us_numeric":
-                return `on ${this.asDate().toLocaleString(locale, us_numeric_options)}`;
+                return fmt(hour_options, "at");
+            case "usNumeric":
+                return fmt(us_numeric_options);
         }
     }
 
