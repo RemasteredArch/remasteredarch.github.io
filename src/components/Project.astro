@@ -32,8 +32,11 @@ const links = raw_links.map(({ type, url }) => {
 <li class="card">
     <h4>{title}</h4>
     <p>{description}</p>
-    {/* E.g., `"First commit on 4/18/2024"` */}
-    <small>First commit {first_commit.format("us_numeric")}</small>
+    {/* E.g., `"First commit on 2024-10-18"` */}
+    <small>
+        First commit on
+        <time datetime={first_commit.toString()}>{first_commit.getDate()}</time>
+    </small>
     <ul>
         {
             links.map(({ Icon, url }) => (
