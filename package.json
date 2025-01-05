@@ -10,7 +10,8 @@
         "check": "astro check && prettier --check .",
         "build": "npm run check && astro build",
         "preview": "astro preview",
-        "astro": "astro"
+        "astro": "astro",
+        "ci": "sudo \"$(which act)\" -P 'ubuntu-24.04=catthehacker/ubuntu:act-22.04'"
     },
     "dependencies": {
         "@astrojs/check": "^0.9.4",
