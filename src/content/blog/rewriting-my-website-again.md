@@ -2,7 +2,7 @@
 title: Rewriting My Website, Again
 description: I rewrote my website again. What changed? Lots.
 authors:
-    - RemasteredArch
+    - remasteredarch
 published: { iso: "0001-01-01T00:00:00-07:00", timeZone: "America/Los_Angeles" }
 tags: []
 ---
