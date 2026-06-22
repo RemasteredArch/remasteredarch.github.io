@@ -1,4 +1,4 @@
-import { z as zod } from "astro:content";
+import { z as zod } from "astro/zod";
 import { rawDateTime } from "~/content.config.ts";
 
 /**

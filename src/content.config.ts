@@ -20,7 +20,7 @@ function getRuntimeTimeZones(): readonly [string, ...string[]] {
 }
 
 export const rawDateTime = zod.object({
-    iso: zod.string().datetime({ offset: true, precision: 0 }),
+    iso: zod.iso.datetime({ offset: true, precision: 0 }),
     timeZone: zod.enum(getRuntimeTimeZones()),
 });
 
