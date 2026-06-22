@@ -7,7 +7,7 @@ interface Props {
     blog_post: CollectionEntry<"blog">;
 }
 
-const { slug, data } = Astro.props.blog_post;
+const { id: slug, data } = Astro.props.blog_post;
 const { title, description } = data;
 
 const tags = await getEntries(data.tags);

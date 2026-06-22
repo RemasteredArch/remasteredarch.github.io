@@ -10,6 +10,7 @@ import LegalItem from "~/components/LegalItem.astro";
 import Footer from "~/components/Footer.astro";
 import { IsoDateTime, isoOrUndefined } from "~/components/Time.ts";
 import { getEntries } from "astro:content";
+import { render } from "astro:content";
 
 /**
  * Format the published date, and, if it exists, the last updated date as strings.
@@ -43,13 +44,13 @@ export const getStaticPaths = (async () => {
     const blog = await getCollection("blog");
 
     return blog.map((post) => ({
-        params: { slug: post.slug },
+        params: { slug: post.id },
         props: { post },
     }));
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const { title, authors: author_references, description, extra_legal_disclaimers } = post.data;
 
 const tags = await getEntries(post.data.tags);

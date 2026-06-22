@@ -1,4 +1,6 @@
-import { z as zod, reference, defineCollection } from "astro:content";
+import { glob, type Loader } from "astro/loaders";
+import { reference, defineCollection } from "astro:content";
+import { z as zod } from "astro/zod";
 
 /**
  * Get the time zones available in the current runtime.
@@ -22,8 +24,22 @@ export const rawDateTime = zod.object({
     timeZone: zod.enum(getRuntimeTimeZones()),
 });
 
+function contentGlob(collectionName: string): Loader {
+    return glob({
+        base: "./src/content/" + collectionName,
+        pattern: "**/*.{md,mdx}",
+    });
+}
+
+function dataGlob(collectionName: string): Loader {
+    return glob({
+        base: "./src/content/" + collectionName,
+        pattern: "**/*.yaml",
+    });
+}
+
 const projects = defineCollection({
-    type: "data",
+    loader: dataGlob("projects"),
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
@@ -39,7 +55,7 @@ const projects = defineCollection({
 });
 
 const blog = defineCollection({
-    type: "content",
+    loader: contentGlob("blog"),
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
@@ -64,7 +80,7 @@ const blog = defineCollection({
 });
 
 const authors = defineCollection({
-    type: "data",
+    loader: dataGlob("authors"),
     schema: zod.object({
         name: zod.string(),
         contact: zod
@@ -78,7 +94,7 @@ const authors = defineCollection({
 });
 
 const tags = defineCollection({
-    type: "data",
+    loader: dataGlob("tags"),
     schema: zod.object({
         name: zod.string(),
         description: zod.string(),
