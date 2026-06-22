@@ -14,4 +14,5 @@ export default defineConfig({
             theme: catppuccin_mocha_with_darker_bg,
         },
     },
+    compressHTML: true,
 });
