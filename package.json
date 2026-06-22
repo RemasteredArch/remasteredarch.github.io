@@ -14,8 +14,8 @@
         "ci": "sudo \"$(which act)\" -P 'ubuntu-24.04=catthehacker/ubuntu:act-22.04'"
     },
     "dependencies": {
-        "@astrojs/check": "^0.9.4",
-        "astro": "^4.16.10",
+        "@astrojs/check": "^0.9.9",
+        "astro": "^7.0.0",
         "typescript": "^5.6.3"
     },
     "devDependencies": {
