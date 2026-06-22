@@ -36,34 +36,34 @@ Though I started with the web, nowadays I just write Rust for the Linux command 
 Accordingly, I did not have a particular technology in mind.
 I did know a few things:
 
--   I wanted it to be generated.
-    My last website was 100% handmade, but now that I have more experience,
-    I didn't want to duplicate code and I had the know-how to use a framework or generator.
--   I wanted it to be _statically_ generated.
-    I didn't need any dynamic content, so server-side rendering would've been pointless,
-    and static hosting is cheaper, easier, faster, and more secure.
--   I wanted to ship as little JavaScript as possible.
-    I wanted a simple and fast website,
-    and not the interactivity that most frameworks are built for.
-    That meant I wanted a framework that did as much as it could at compile time,
-    not frameworks that ship lots of client-side JavaScript.
+- I wanted it to be generated.
+  My last website was 100% handmade, but now that I have more experience,
+  I didn't want to duplicate code and I had the know-how to use a framework or generator.
+- I wanted it to be _statically_ generated.
+  I didn't need any dynamic content, so server-side rendering would've been pointless,
+  and static hosting is cheaper, easier, faster, and more secure.
+- I wanted to ship as little JavaScript as possible.
+  I wanted a simple and fast website,
+  and not the interactivity that most frameworks are built for.
+  That meant I wanted a framework that did as much as it could at compile time,
+  not frameworks that ship lots of client-side JavaScript.
 
 I wasn't sure what would suit my needs,
 but I had been keeping my eye on the web development world, so I had a few ideas:
 
--   A handmade home page with a static site generator with a custom theme for the blog.
-    I considered
-    [Zola](https://www.getzola.org/),
-    [Cobalt](https://cobalt-org.github.io/),
-    [Eleventy](https://www.11ty.dev/),
-    [Hugo](https://gohugo.io/),
-    and [Jekyll](https://jekyllrb.com/).
--   An HTML template engine,
-    like [Parcel](https://parceljs.org/)
-    with [PostHTML's Include Plugin](https://github.com/posthtml/posthtml-include).
--   A JSX-based static site generation framework like
-    [Astro](https://astro.build/)
-    or [Next.js](https://nextjs.org/).
+- A handmade home page with a static site generator with a custom theme for the blog.
+  I considered
+  [Zola](https://www.getzola.org/),
+  [Cobalt](https://cobalt-org.github.io/),
+  [Eleventy](https://www.11ty.dev/),
+  [Hugo](https://gohugo.io/),
+  and [Jekyll](https://jekyllrb.com/).
+- An HTML template engine,
+  like [Parcel](https://parceljs.org/)
+  with [PostHTML's Include Plugin](https://github.com/posthtml/posthtml-include).
+- A JSX-based static site generation framework like
+  [Astro](https://astro.build/)
+  or [Next.js](https://nextjs.org/).
 
 Eventually, I decided that I would get the ball rolling with design,
 then implement the home page with plain HTML and CSS,
@@ -77,14 +77,14 @@ but I quite enjoyed it this go around.
 
 I knew I wanted a few things:
 
--   The header "Hey, I'm Arch. 👋"
--   A prominent link to my GitHub account
--   A basic summary pertaining to my interests, particularly technical
--   My pronouns
--   A pride flag
--   A proper legal notice
--   A list of my projects
--   A list of my blog posts
+- The header "Hey, I'm Arch. 👋"
+- A prominent link to my GitHub account
+- A basic summary pertaining to my interests, particularly technical
+- My pronouns
+- A pride flag
+- A proper legal notice
+- A list of my projects
+- A list of my blog posts
 
 The last two didn't work out
 --- I wasn't going to be able to have two arbitrarily long lists on a mobile device.
@@ -121,10 +121,10 @@ Because Penpot is oriented around CSS,
 translating the design was fairly easy.
 From that point, a few more things happened:
 
--   Added styling for links
--   Changed the icon for my GitHub account to the [Git logomark](https://git-scm.com/downloads/logos)
-    instead of a cat or octopus emoji
--   Translated units from `px` to relative units like `rem` and `ch`
+- Added styling for links
+- Changed the icon for my GitHub account to the [Git logomark](https://git-scm.com/downloads/logos)
+  instead of a cat or octopus emoji
+- Translated units from `px` to relative units like `rem` and `ch`
 
 I had decided to write my first implementation in plain HTML and CSS
 because I wasn't sure what framework I wanted,
@@ -228,7 +228,7 @@ but I am very excited for the [Temporal proposal](https://github.com/tc39/propos
 so that I don't have to do this.
 These are annoying, sure, but they do what I need to:
 
--   Date times on different days are displayed separately:
+- Date times on different days are displayed separately:
 
 ```yaml
 # "Published on Tue, October 29, 2024 at 12:54 PM PDT"
@@ -238,8 +238,8 @@ last_updated:
     { iso: "2024-10-20T17:55:23-07:00", timeZone: "America/Los_Angeles" }
 ```
 
--   Date times on the same day are displayed separately,
-    and the embedded time zone is accounted for:
+- Date times on the same day are displayed separately,
+  and the embedded time zone is accounted for:
 
 ```yaml
 # "Published on Sun, October 20, 2024 at 12:54 PM PDT"
