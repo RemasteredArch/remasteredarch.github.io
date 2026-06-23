@@ -97,7 +97,7 @@ const tags = defineCollection({
     loader: dataGlob("tags"),
     schema: zod.object({
         name: zod.string(),
-        description: zod.string(),
+        description: zod.string().optional(),
     }),
 });
 
