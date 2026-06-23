@@ -85,7 +85,9 @@ const authors = await resolveAuthors(author_references);
                 {
                     last_updated_str && (
                         <span>
-                            Last updated <time datetime={last_updated!.toString()}>{last_updated_str}</time>
+                            Last updated
+                            {/* prettier-ignore */}
+                            <time datetime={last_updated!.toString()}>{last_updated_str}</time>
                         </span>
                     )
                 }
