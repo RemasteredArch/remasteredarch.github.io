@@ -1,11 +1,7 @@
 # `remasteredarch.net`
 
-The repository for my personal website.
-
-It is almost ready for prime time.
-I need to work on improving blog metadata
---- tag linking, add supprt for multiple blog authors, and show metadata on blog pages ---
-and add a CI/CD script.
+The repository for my personal website,
+written from scratch with [Astro](https://astro.build/).
 
 ![The home page of my site](./src/images/v4_home_page.png "Home Page")
 
