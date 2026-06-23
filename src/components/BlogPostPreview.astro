@@ -27,7 +27,12 @@ const last_updated = isoOrUndefined(data.last_updated);
         last_updated && (
             <small>
                 Last updated:
-                <time datetime={last_updated.toString()}>{last_updated.format("date")}</time>
+                <time datetime={last_updated.toString()}>
+                    {last_updated.format(
+                        // TO-DO: compare dates in a timezone-aware manner.
+                        published.getYear() == last_updated.getYear() ? "date" : "dateYear",
+                    )}
+                </time>
             </small>
         )
     }
