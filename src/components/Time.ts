@@ -163,6 +163,7 @@ export class IsoDateTime {
      *
      * Format a date time as either:
      * - A date and time: `"on Fri, October 18, 2024 at 5:53 PM PDT"`
+     * - A date and year: `"on October 18, 2024"`
      * - A date: `"on October 18"`
      * - An American-style `mm/dd/yyyy` numeric date: `"on 4/18/2024"`
      * - Just the hours: `"at 5:53 PM PDT"`
@@ -172,7 +173,7 @@ export class IsoDateTime {
      * @param type - The style of formatting to use.
      * @returns The formatted date time.
      */
-    format(type: "dateTime" | "date" | "hour" | "usNumeric"): string {
+    format(type: "dateTime" | "dateYear" | "date" | "hour" | "usNumeric"): string {
         const fmt = (options: Intl.DateTimeFormatOptions, preposition: string = "on"): string => {
             return `${preposition} ${this.toLocaleString("en-US", options)}`;
         };
@@ -187,6 +188,13 @@ export class IsoDateTime {
             minute: "numeric",
             hour12: true,
             timeZoneName: "short",
+        };
+
+        /** Ex. `"October 18, 2024"` */
+        const short_date_year_options: Intl.DateTimeFormatOptions = {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
         };
 
         /** Ex. `"October 18"` */
@@ -213,6 +221,8 @@ export class IsoDateTime {
         switch (type) {
             case "dateTime":
                 return fmt(long_options);
+            case "dateYear":
+                return fmt(short_date_year_options);
             case "date":
                 return fmt(short_date_options);
             case "hour":
