@@ -1,9 +1,9 @@
 ---
 title: Rewriting My Website, Again
-description: I rewrote my website again. What changed? Lots.
+description: I rewrote my website again. Lots has changed.
 authors:
     - remasteredarch
-published: { iso: "2026-06-23T13:30:00-07:00", timeZone: "America/Los_Angeles" }
+published: { iso: "2026-06-23T13:59:00-07:00", timeZone: "America/Los_Angeles" }
 tags:
     - web-development
 ---
