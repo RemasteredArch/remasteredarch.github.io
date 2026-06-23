@@ -43,6 +43,7 @@ const projects = defineCollection({
     schema: zod.object({
         title: zod.string(),
         description: zod.string(),
+        // TO-DO: this should really be an `IsoDateTime`.
         first_commit: rawDateTime,
         links: zod.array(
             zod.object({
