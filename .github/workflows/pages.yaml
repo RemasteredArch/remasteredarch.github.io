@@ -1,14 +1,10 @@
 name: Build and Deploy to GitHub Pages
 on:
     push:
-        branches:
-            # - main # Enable before merging rewrite
-            - rewrite # Disable before merging rewrite
         paths-ignore:
             - docs/**
             - README.md
             - LICENSE
-    # page_build: # A push to the branch that publishes to GitHub Pages
 
 # If this workflow triggers while another run is ongoing, cancel the first run.
 concurrency:
