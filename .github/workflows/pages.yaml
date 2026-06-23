@@ -38,8 +38,8 @@ jobs:
               run: npm ci
             - name: Build Site
               run: npm run build -- \
-                  --site "${{ steps.pages.outputs.origin }}" \
-                  --base "${{ steps.pages.outputs.base_path }}"
+                  --site '${{ steps.pages.outputs.origin }}' \
+                  --base '${{ steps.pages.outputs.base_path }}'
             - name: Upload Website Files
               uses: actions/upload-pages-artifact@v5
               with:
