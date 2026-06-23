@@ -1,0 +1,251 @@
+---
+import Page from "~/layouts/Page.astro";
+import NavHeader from "~/components/NavHeader.astro";
+import IconListItem from "~/components/IconListItem.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import { authorListAsArray, resolveAuthors } from "~/components/ResolveAuthors.astro";
+import AuthorList from "~/components/AuthorList.astro";
+import LegalItem from "~/components/LegalItem.astro";
+import Footer from "~/components/Footer.astro";
+import { IsoDateTime, isoOrUndefined } from "~/components/Time.ts";
+import { getEntries } from "astro:content";
+import { render } from "astro:content";
+
+/**
+ * Format the published date, and, if it exists, the last updated date as strings.
+ *
+ * If the two dates are one the same day, the last updated date is only a time.
+ *
+ * @param published - The date the blog post was first published on.
+ * @param last_updated - The most recent date the blog post was updated on.
+ * @returns The dates formatted as they should be presented in the post's front matter.
+ */
+function formatDates(
+    published: IsoDateTime,
+    last_updated?: IsoDateTime,
+): { published: string; last_updated?: string } {
+    let strings: { published: string; last_updated?: string } = {
+        published: published.format("dateTime"),
+    };
+
+    if (!last_updated) {
+        return strings;
+    }
+
+    strings.last_updated = last_updated.format(
+        last_updated.sameDay(published) ? "hour" : "dateTime",
+    );
+
+    return strings;
+}
+
+export const getStaticPaths = (async () => {
+    const blog = await getCollection("blog");
+
+    return blog.map((post) => ({
+        params: { slug: post.id },
+        props: { post },
+    }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, authors: author_references, description, extra_legal_disclaimers } = post.data;
+
+const tags = await getEntries(post.data.tags);
+
+const published = isoOrUndefined(post.data.published)!;
+const last_updated = isoOrUndefined(post.data.last_updated);
+const { published: published_str, last_updated: last_updated_str } = formatDates(
+    published,
+    last_updated,
+);
+
+const authors = await resolveAuthors(author_references);
+---
+
+<Page
+    title={title}
+    author={authorListAsArray(authors).map((author) => author.name)}
+    description={description}>
+    <NavHeader title={title}>
+        <IconListItem>
+            <span slot="icon">&lt;-</span>
+            <a slot="text" href="/blog/">Blog</a>
+        </IconListItem>
+    </NavHeader>
+    <article aria-label={title}>
+        <div class="metadata">
+            <div class="description"><i>{description}</i></div>
+            <div class="authors">Written by <AuthorList authors={authors} /></div>
+            <small class="dates">
+                Published <time datetime={published.toString()}>{published_str}</time>
+                <br />
+                {
+                    last_updated_str && (
+                        <span>
+                            Last updated
+                            {/* prettier-ignore */}
+                            <time datetime={last_updated!.toString()}>{last_updated_str}</time>
+                        </span>
+                    )
+                }
+            </small>
+            <small class="tags">
+                Tags:
+                <ul>
+                    {
+                        tags.map(({ id, data }) => (
+                            <li>
+                                <a href={`/blog/tags/${id}/`}>{data.name}</a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </small>
+        </div>
+        <hr />
+        <main>
+            <Content />
+        </main>
+    </article>
+    <Footer slot="footer">
+        {
+            extra_legal_disclaimers &&
+                extra_legal_disclaimers.map((disclaimer) => {
+                    if (typeof disclaimer === "string") {
+                        return <p>{disclaimer}</p>;
+                    }
+
+                    return (
+                        <LegalItem
+                            project_name={disclaimer.project_name}
+                            project_link={disclaimer.project_link}
+                            license_name={disclaimer.license_name}
+                            license_link={disclaimer.license_link}
+                            copyright_holder={disclaimer.copyright_holder}
+                            copyright_year={disclaimer.copyright_year}
+                        />
+                    );
+                })
+        }
+    </Footer>
+</Page>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        gap: inherit;
+        width: 100%;
+        --text-width: 65ch;
+    }
+
+    .metadata {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        gap: 1rem;
+
+        align-self: center;
+        width: 100%;
+        max-width: var(--text-width);
+    }
+
+    .dates,
+    .authors,
+    .tags {
+        color: var(--color-overlay-1);
+
+        --color-link: var(--color-overlay-1);
+        --color-link-visited: var(--color-link);
+    }
+
+    .tags ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+        align-content: start;
+        justify-content: start;
+        gap: 1rem;
+
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin-left: 2ch;
+    }
+
+    main {
+        gap: 2rem;
+        width: 100%;
+    }
+</style>
+
+<style is:global>
+    main {
+        .astro-code {
+            min-width: min(var(--text-width), 100%);
+            max-width: 100%;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        :not(.astro-code) code {
+            background-color: var(--color-mantle);
+            padding: 0.25em;
+            border-radius: 0.25em;
+            color: var(--color-subtext-1);
+        }
+
+        /* This is *such* a hack. Does it have to be? */
+        :not(.astro-code) a {
+            & code {
+                color: var(--color-link);
+                text-decoration-style: dotted;
+            }
+
+            &:visited code {
+                color: var(--color-link-visited);
+            }
+
+            &:hover code,
+            &:focus code {
+                color: var(--color-link-hover);
+                text-decoration-style: solid;
+            }
+        }
+
+        * {
+            align-self: center;
+        }
+
+        :not(.astro-code) {
+            width: var(--text-width);
+            max-width: 100%;
+        }
+
+        p {
+            text-indent: 2ch;
+        }
+
+        li:not(:first-of-type) {
+            margin-top: 0.75rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+        }
+    }
+</style>

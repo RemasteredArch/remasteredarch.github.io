@@ -1,0 +1,80 @@
+---
+import Footer from "~/components/Footer.astro";
+
+interface Props {
+    title: string;
+    author: string | string[];
+    description: string;
+}
+
+const { title, author, description } = Astro.props;
+
+// Flatten type union from `string | string[]` into `string[]`.
+let authors: string[];
+if (typeof author === "string") {
+    // If only a single author is provided.
+    authors = [author];
+} else {
+    // If list of authors is provided.
+    authors = author;
+}
+
+import "~/styles/index.css";
+import "~/styles/fonts.css";
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+
+        {authors.map((author) => <meta name="author" content={author} />)}
+        <meta name="description" content={description} />
+        <meta name="color-scheme" content="dark" />
+    </head>
+    <body class="main-page bg-color-base">
+        <div class="content">
+            <slot />
+        </div>
+        <slot name="footer">
+            <Footer />
+        </slot>
+    </body>
+</html>
+
+<style>
+    .main-page {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        align-content: stretch;
+        justify-content: space-between;
+        gap: 5rem;
+        padding: 3rem;
+        /* This is probably super unstable. */
+        min-height: 100vh;
+    }
+
+    @media screen and (width < 30rem) {
+        .main-page {
+            padding: 1rem;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        align-content: stretch;
+        justify-content: start;
+        gap: 3rem;
+
+        width: 100%;
+    }
+</style>

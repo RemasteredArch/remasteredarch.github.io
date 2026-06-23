@@ -1,0 +1,82 @@
+---
+// SPDX-License-Identifier: AGPL-3.0-or-later
+//
+// Copyright © 2024 RemasteredArch
+//
+// This file is part of `remasteredarch.net`.
+//
+// `remasteredarch.net` is free software: you can redistribute it and/or modify it under the terms
+// of the GNU Affero General Public License as published by the Free Software Foundation, either
+// version 3 of the License, or (at your option) any later version.
+//
+// `remasteredarch.net` is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+// PURPOSE. See the GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License along with
+// `remasteredarch.net`. If not, see <https://www.gnu.org/licenses/>.
+
+import Page from "~/layouts/Page.astro";
+import Footer from "~/components/Footer.astro";
+import LegalItem from "~/components/LegalItem.astro";
+import IconList from "~/components/IconList.astro";
+import IconListItem from "~/components/IconListItem.astro";
+import NavList from "~/components/NavList.astro";
+import GitIcon from "~/components/icons/GitIcon.astro";
+import EmailIcon from "~/components/icons/EmailIcon.astro";
+import PrideIcon from "~/components/icons/PrideIcon.astro";
+---
+
+<Page title="Arch's Site" author="RemasteredArch" description="RemasteredArch's home page">
+    <header>
+        <h1>Hey, I'm Arch. &#x1F44B;</h1>
+        <IconList>
+            <IconListItem>
+                <PrideIcon slot="icon" />
+                <span slot="text">He/they</span>
+            </IconListItem>
+            <IconListItem>
+                <GitIcon slot="icon" />
+                <a slot="text" href="https://github.com/RemasteredArch/">RemasteredArch</a>
+            </IconListItem>
+            <IconListItem>
+                <EmailIcon slot="icon" />
+                <span slot="text">RemasteredArch (AT) gmail.com</span>
+            </IconListItem>
+        </IconList>
+    </header>
+    <main>
+        <div class="bio">
+            <p>
+                I'm a nerd with a passion for Rust, computer science, Linux, Bash, Neovim,
+                toolchains, networking, and free and open source software
+                licensing/compliance/security.
+            </p>
+            <p>
+                Outside of tech, I enjoy art photography, poetry, American Sign Language, hiking,
+                and mountain biking.
+            </p>
+        </div>
+        <NavList>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </NavList>
+    </main>
+    <Footer slot="footer">
+        <LegalItem
+            project_name="Git logomark"
+            project_link="https://git-scm.com/downloads/logos"
+            license_name="Creative Commons 3.0 Unported License"
+            license_link="https://creativecommons.org/licenses/by/3.0/"
+            copyright_holder="Jason Long"
+            copyright_year="2012"
+        />
+    </Footer>
+</Page>
+
+<style>
+    .bio p {
+        margin-top: 1rem;
+        max-width: 45ch;
+    }
+</style>

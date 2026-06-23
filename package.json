@@ -1,0 +1,25 @@
+{
+    "name": "remasteredarch-website",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "fmt": "prettier --write .",
+        "dev": "astro dev",
+        "start": "astro dev",
+        "sync": "astro sync",
+        "check": "astro check && prettier --check .",
+        "build": "npm run check && astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "ci": "sudo \"$(which act)\" -P 'ubuntu-24.04=catthehacker/ubuntu:act-22.04'"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.9.9",
+        "astro": "^7.0.0",
+        "typescript": "^6.0.3"
+    },
+    "devDependencies": {
+        "prettier": "^3.8.4",
+        "prettier-plugin-astro": "^0.14.1"
+    }
+}

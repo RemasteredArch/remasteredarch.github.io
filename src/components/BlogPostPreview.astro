@@ -1,0 +1,85 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getEntries } from "astro:content";
+import { isoOrUndefined } from "./Time";
+
+interface Props {
+    blog_post: CollectionEntry<"blog">;
+}
+
+const { id: slug, data } = Astro.props.blog_post;
+const { title, description } = data;
+
+const tags = await getEntries(data.tags);
+
+const published = isoOrUndefined(data.published)!;
+const last_updated = isoOrUndefined(data.last_updated);
+---
+
+<li class="card">
+    <h3><a href={`/blog/${slug}/`}>{title}</a></h3>
+    <p>{description}</p>
+    <small>
+        Published:
+        <time datetime={published.toString()}>{published.format("date")}</time>
+    </small>
+    {
+        last_updated && (
+            <small>
+                Last updated:
+                <time datetime={last_updated.toString()}>
+                    {last_updated.format(
+                        // TO-DO: compare dates in a timezone-aware manner.
+                        published.getYear() == last_updated.getYear() ? "date" : "dateYear",
+                    )}
+                </time>
+            </small>
+        )
+    }
+    <small>
+        Tags:
+        <ul>
+            {
+                tags.map(({ id, data }) => (
+                    <li>
+                        <a href={`/blog/tags/${id}/`}>{data.name}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </small>
+</li>
+
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        row-gap: 1rem;
+        margin-bottom: 2rem;
+
+        width: 100%;
+        max-width: 35ch;
+    }
+
+    h3 a {
+        text-decoration: none;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+        align-content: start;
+        justify-content: start;
+        gap: 1rem;
+
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        margin-left: 2ch;
+    }
+</style>

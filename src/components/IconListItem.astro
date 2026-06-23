@@ -1,0 +1,23 @@
+---
+
+---
+
+<li>
+    <div aria-hidden="true" class="contact-icon">
+        <slot name="icon" />
+    </div>
+    <div><slot name="text" /></div>
+</li>
+
+<style>
+    .contact-icon {
+        margin: auto;
+    }
+
+    li {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 2em 1fr;
+        column-gap: 1rem;
+    }
+</style>

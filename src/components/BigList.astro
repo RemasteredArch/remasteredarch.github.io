@@ -1,0 +1,26 @@
+---
+interface Props {
+    // Should use this to toggle `<menu>` instead of `<ul>`, but `<menu>` is currently bugged on
+    // Chromium browsers
+    menu?: boolean | undefined;
+}
+---
+
+<ul class="font-big">
+    <slot />
+</ul>
+
+<style>
+    ul,
+    menu {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        align-content: stretch;
+        justify-content: start;
+        gap: 1rem;
+
+        list-style-type: square;
+    }
+</style>

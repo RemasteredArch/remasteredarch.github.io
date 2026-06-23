@@ -1,0 +1,211 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ *
+ * Copyright © 2024 RemasteredArch
+ *
+ * This file is part of `remasteredarch.net`.
+ *
+ * `remasteredarch.net` is free software: you can redistribute it and/or modify it under the terms
+ * of the GNU Affero General Public License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * `remasteredarch.net` is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE. See the GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along with
+ * `remasteredarch.net`. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+:root {
+    /* Colors from Catppuccin Mocha
+     * Copyright 2021 Catppuccin
+     * MIT license
+     * <https://catppuccin.com/> */
+    --color-base: #1e1e2e;
+    --color-mantle: #181825;
+    --color-crust: #11111b;
+    --color-text: #cdd6f4;
+    --color-subtext-1: #bac2de;
+    --color-overlay-1: #7f849c;
+    --color-sky: #89dceb;
+    --color-lavender: #b4befe;
+    --color-blue: #89b4fa;
+
+    --color-link: var(--color-blue);
+    --color-link-visited: var(--color-lavender);
+    --color-link-hover: var(--color-sky);
+
+    background: var(--color-base);
+
+    --font-size-base: 1.5rem;
+}
+
+@media screen and (width < 25rem) {
+    :root {
+        --font-size-base: 1.25rem;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    border-color: var(--color-text);
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    /* Default 24px */
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    line-height: 1.4;
+
+    color: var(--color-text);
+    background-color: var(--color-base);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    object-fit: contain;
+    height: fit-content;
+}
+
+hr {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.font-color-subtext {
+    color: var(--color-overlay-1);
+
+    --color-link: var(--color-overlay-1);
+    --color-link-visited: var(--color-link);
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: start;
+    justify-content: space-between;
+    gap: 2rem;
+
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+    align-content: stretch;
+    justify-content: start;
+    gap: 4rem;
+}
+
+a {
+    color: var(--color-link);
+    text-decoration-style: dotted;
+}
+
+a:visited {
+    color: var(--color-link-visited);
+}
+
+a:hover,
+a:focus {
+    color: var(--color-link-hover);
+    text-decoration-style: solid;
+}
+
+ol,
+li,
+ul,
+menu {
+    list-style-position: outside;
+}
+
+.font-big {
+    /* Default 36px */
+    font-size: calc(var(--font-size-base) * 1.5);
+    font-weight: 600;
+}
+
+.font-mono {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+}
+
+small {
+    font-family: "IBM Plex Mono", monospace;
+    /* Default 16px */
+    font-size: var(--font-size-base) * (2 / 3);
+    font-weight: 400;
+}
+
+code {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+blockquote {
+    border-left: 0.35rem solid;
+    border-color: var(--color-overlay-1);
+    color: var(--color-subtext-1);
+    padding-left: 1.25rem;
+}
+
+h1 {
+    /* Default 72px */
+    font-size: calc(var(--font-size-base) * 3);
+    font-weight: 700;
+}
+
+h2 {
+    /* Default 60px */
+    font-size: calc(var(--font-size-base) * 2.5);
+    font-weight: 700;
+}
+
+h3 {
+    /* Default 48px */
+    font-size: calc(var(--font-size-base) * 2);
+    font-weight: 600;
+}
+
+h4 {
+    /* Default 36px */
+    font-size: calc(var(--font-size-base) * 1.5);
+    font-weight: 600;
+}
+
+h5 {
+    /* Default 32px */
+    font-size: var(--font-size-base) * (4 / 3);
+    font-weight: 600;
+}
+
+h6 {
+    /* Default 32px */
+    font-size: var(--font-size-base) * (4 / 3);
+    font-weight: 500;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-subtext-1);
+}

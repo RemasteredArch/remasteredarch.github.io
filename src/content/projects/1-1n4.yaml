@@ -1,0 +1,5 @@
+title: 1N4
+description: A Discord bot made for a private Minecraft SMP
+first_commit: { iso: "2024-09-06T17:38:13-07:00", timeZone: "America/Los_Angeles" }
+links:
+    - { type: git, url: "https://github.com/ArchitecturalDogSoftware/1N4" }

@@ -1,0 +1,91 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogIcon from "./icons/BlogIcon.astro";
+import GitIcon from "./icons/GitIcon.astro";
+import WebsiteIcon from "./icons/WebsiteIcon.astro";
+import { IsoDateTime } from "./Time";
+
+interface Props {
+    project: CollectionEntry<"projects">;
+}
+
+const {
+    title,
+    description,
+    first_commit: raw_first_commit,
+    links: raw_links,
+} = Astro.props.project.data;
+
+const first_commit = new IsoDateTime(raw_first_commit.iso, raw_first_commit.timeZone);
+
+const icon_map = {
+    "blog post": BlogIcon,
+    git: GitIcon,
+    website: WebsiteIcon,
+};
+
+const links = raw_links.map(({ type, url }) => {
+    return { Icon: icon_map[type], url };
+});
+---
+
+<li class="card">
+    <h4>{title}</h4>
+    <p>{description}</p>
+    {/* E.g., `"First commit on 2024-10-18"` */}
+    <small>
+        First commit on
+        <time datetime={first_commit.toString()}>{first_commit.getDate()}</time>
+    </small>
+    <ul>
+        {
+            links.map(({ Icon, url }) => (
+                <li>
+                    <a href={url}>
+                        <Icon />
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</li>
+
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: start;
+        justify-content: start;
+        row-gap: 1rem;
+        padding: 1.5rem;
+
+        width: 100%;
+        max-width: 35ch;
+        border-radius: 1rem;
+        border-bottom: 1px solid var(--color-overlay-1);
+    }
+
+    h4 {
+        align-self: center;
+        text-align: center;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+        align-content: start;
+        justify-content: start;
+        gap: 1rem;
+
+        width: 100%;
+        list-style: none;
+        padding: 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
