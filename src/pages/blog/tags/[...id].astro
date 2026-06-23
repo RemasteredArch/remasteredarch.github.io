@@ -30,7 +30,7 @@ const tagged = await getCollection("blog", ({ data }) => data.tags.some(({ id })
             <a slot="text" href="/blog/">Blog</a>
         </IconListItem>
     </NavHeader>
-    <p>{description}</p>
+    {description && <p>{description}</p>}
     <h2>Posts with this tag</h2>
     <BlogPostPreviewList posts={tagged} />
 </Page>
