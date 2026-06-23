@@ -1,0 +1,5 @@
+title: ai_dhcp
+description: A blazingly fast 🚀 DHCP server 🌐 that's ✨ powered by AI ✨ to make your network stable like never before.
+first_commit: { iso: "2026-03-04T21:51:47-08:00", timeZone: "America/Los_Angeles" }
+links:
+    - { type: git, url: "https://github.com/RemasteredArch/ai_dhcp" }

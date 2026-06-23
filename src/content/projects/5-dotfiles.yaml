@@ -1,5 +1,0 @@
-title: dotfiles
-description: A collection of various scripts and configuration files.
-first_commit: { iso: "2024-04-06T17:02:14-07:00", timeZone: "America/Los_Angeles" }
-links:
-    - { type: git, url: "https://github.com/RemasteredArch/dotfiles" }
