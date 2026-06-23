@@ -240,7 +240,7 @@ export class IsoDateTime {
     ): string {
         if (!options.timeZone) options.timeZone = this.#timeZone;
 
-        return this.asDate().toLocaleString(locale, options);
+        return this.toDate().toLocaleString(locale, options);
     }
 
     /**
@@ -252,7 +252,7 @@ export class IsoDateTime {
      *
      * @returns Returns the date time as a {@link Date}.
      */
-    asDate(): Date {
+    toDate(): Date {
         return new Date(this.#iso);
     }
 
